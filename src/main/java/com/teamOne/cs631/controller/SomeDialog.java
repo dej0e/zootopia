@@ -19,7 +19,7 @@ import org.springframework.stereotype.Controller;
  * @author Rene Gielen
  * @noinspection WeakerAccess
  */
-@Controller
+@Component
 @FxmlView
 public class SomeDialog {
 
