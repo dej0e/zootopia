@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +40,11 @@ public class EmployeeDialogController {
 
     @FXML
     public void initialize() {
+
+        double width = Screen.getPrimary().getBounds().getWidth()*0.6;
+        double height = Screen.getPrimary().getBounds().getHeight()*0.6;
         this.stage = new Stage();
-        stage.setScene(new Scene(employeeDialog));
+        stage.setScene(new Scene(employeeDialog, width, height));
 
         TableView<Employee> tableView = ModelTableViewBuilder.buildUpon(Employee.class);
         ObservableList<Employee> data = FXCollections.observableArrayList(employeeService.findAll());
