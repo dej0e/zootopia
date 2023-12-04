@@ -5,12 +5,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import net.rgielen.fxweaver.core.FxControllerAndView;
-import net.rgielen.fxweaver.core.FxWeaver;
 import net.rgielen.fxweaver.core.FxmlView;
-import org.springframework.beans.factory.InjectionPoint;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 
 
 /**
@@ -21,7 +17,7 @@ import org.springframework.stereotype.Controller;
  */
 @Component
 @FxmlView
-public class SomeDialog {
+public class DialogController {
 
     private Stage stage;
 

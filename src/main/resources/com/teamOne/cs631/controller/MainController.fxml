@@ -3,8 +3,10 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns:fx="http://javafx.com/fxml" spacing="10" alignment="CENTER"
-      fx:controller="com.teamOne.cs631.controller.MainWindow">
+      fx:controller="com.teamOne.cs631.controller.MainController">
 
     <Button fx:id="openDialogButton" text="Open Simple Dialog"/>
+    <Button fx:id="openTiledDialogButton" text="Open Tiled Dialog"/>
+
 
 </VBox>

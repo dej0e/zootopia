@@ -3,7 +3,7 @@ package com.teamOne.cs631.application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxWeaver;
-import com.teamOne.cs631.controller.MainWindow;
+import com.teamOne.cs631.controller.MainController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
@@ -24,7 +24,7 @@ public class PrimaryStageInitializer implements ApplicationListener<StageReadyEv
     @Override
     public void onApplicationEvent(StageReadyEvent event) {
         Stage stage = event.stage;
-        Scene scene = new Scene(fxWeaver.loadView(MainWindow.class), 400, 300);
+        Scene scene = new Scene(fxWeaver.loadView(MainController.class), 1920, 1080);
         stage.setScene(scene);
         stage.show();
     }
