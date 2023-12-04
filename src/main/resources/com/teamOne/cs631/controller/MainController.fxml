@@ -6,7 +6,6 @@
       fx:controller="com.teamOne.cs631.controller.MainController">
 
     <Button fx:id="openDialogButton" text="Open Simple Dialog"/>
-    <Button fx:id="openTiledDialogButton" text="Open Tiled Dialog"/>
-
+    <Button fx:id="openTiledDialogButton" text="Open Employee DetailsDialog"/>
 
 </VBox>

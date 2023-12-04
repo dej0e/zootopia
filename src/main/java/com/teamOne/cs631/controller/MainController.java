@@ -8,8 +8,6 @@ import lombok.extern.log4j.Log4j2;
 import net.rgielen.fxweaver.core.FxControllerAndView;
 import net.rgielen.fxweaver.core.FxWeaver;
 import net.rgielen.fxweaver.core.FxmlView;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 @FxmlView
@@ -17,14 +15,12 @@ import org.springframework.stereotype.Component;
 @Log4j2
 public class MainController {
     private final FxWeaver fxWeaver;
-    private final FxControllerAndView<DialogController, VBox> dialog;
     @FXML
     public Button openDialogButton;
     @FXML
     public Button openTiledDialogButton;
 
-    public MainController(FxWeaver fxWeaver, FxControllerAndView<DialogController, VBox> dialog) {
-        this.dialog = dialog;
+    public MainController(FxWeaver fxWeaver) {
         this.fxWeaver = fxWeaver;
     }
 
@@ -37,11 +33,12 @@ public class MainController {
         );
         openTiledDialogButton.setOnAction(
                 actionEvent -> {
-                    FxControllerAndView<TiledDialogController, VBox> tiledDialog =
-                            fxWeaver.load(TiledDialogController.class);
+                    FxControllerAndView<EmployeeDialogController, VBox> tiledDialog =
+                            fxWeaver.load(EmployeeDialogController.class);
                     tiledDialog.getView().ifPresent(
                             v -> {
                                 Label label = new Label();
+                                label.setId("label");
                                 label.setText("Dynamically added Label");
                                 v.getChildren().add(label);
                             }

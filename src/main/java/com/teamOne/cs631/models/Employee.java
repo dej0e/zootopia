@@ -1,6 +1,7 @@
 package com.teamOne.cs631.models;
 
 import com.teamOne.cs631.models.enums.JobType;
+import com.teamOne.cs631.util.IgnoreTable;
 import lombok.Data;
 
 @Data
