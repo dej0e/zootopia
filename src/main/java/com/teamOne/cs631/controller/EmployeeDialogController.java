@@ -6,11 +6,11 @@ import com.teamOne.cs631.util.ModelTableViewBuilder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
@@ -26,11 +26,14 @@ public class EmployeeDialogController {
     @FXML
     public Button closeButton;
     @FXML
-    public Label label;
+    public Label ssnLabel;
+    @FXML
+    private TextField ssnTextField;
 
     EmployeeService employeeService;
+
     @Autowired
-    public EmployeeDialogController (EmployeeService employeeService) {
+    public EmployeeDialogController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
@@ -44,7 +47,9 @@ public class EmployeeDialogController {
         tableView.setItems(data);
         employeeDialog.getChildren().add(0, tableView);
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            label.setText(newSelection.getSSN());
+            ssnTextField.setText(newSelection.getSSN());
+            ssnTextField.setEditable(false);
+
         });
     }
 
