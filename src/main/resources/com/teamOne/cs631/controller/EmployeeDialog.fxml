@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:id="employeeDialog" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teamOne.cs631.controller.EmployeeDialogController">
+<VBox fx:id="employeeDialog" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teamOne.cs631.controller.EmployeeDialogController">
    <Pane prefHeight="200.0" prefWidth="200.0">
       <children>
           <Label fx:id="ssnLabel" layoutX="150.0" layoutY="51.0" text="FirstName" textAlignment="CENTER" />
