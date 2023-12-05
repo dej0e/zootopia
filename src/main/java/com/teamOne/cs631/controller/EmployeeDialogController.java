@@ -92,6 +92,7 @@ public class EmployeeDialogController {
         insertRadioBtn.setUserData(UIMode.INSERT);
         viewRadioBtn.setUserData(UIMode.VIEW);
         updateRadioBtn.setUserData(UIMode.UPDATE);
+        viewRadioBtn.setSelected(true);
 
         tableView = ModelTableViewBuilder.buildUpon(Employee.class);
         employeeDialog.getChildren().add(0, tableView);
@@ -107,6 +108,7 @@ public class EmployeeDialogController {
                     resetTextFields();
                     tableView.getSelectionModel().clearSelection();
                     submitBtn.setDisable(true);
+                    viewRadioBtn.setSelected(true);
                     uiMode = UIMode.VIEW;
                 }
         );
