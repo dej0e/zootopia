@@ -152,11 +152,11 @@ public class EmployeeDialogController {
                         return;
                     case UPDATE:
                         Employee e = collectValues();
-                        changedCount = employeeService.updateEmployee(e);
+                        changedCount = employeeService.update(e);
                         break;
                     case INSERT:
                         Employee e1 = collectValues();
-                        changedCount = employeeService.insertEmployee(e1);
+                        changedCount = employeeService.insert(e1);
                         break;
                 }
                 if (changedCount > 0) {

@@ -19,10 +19,10 @@ public class EmployeeService implements EmployeeDAO {
     public static final String TABLE_NAME = "EMPLOYEE";
     @Autowired
     protected DBService dbService;
-    private QueryRunner dbAccess = new QueryRunner();
+    private final QueryRunner dbAccess = new QueryRunner();
 
     @Override
-    public Integer insertEmployee(Employee obj) throws Exception {
+    public Integer insert(Employee obj) throws Exception {
         StringBuffer buffer = new StringBuffer();
         buffer.append("INSERT INTO " + TABLE_NAME + " VALUES (");
         try {
@@ -34,13 +34,13 @@ public class EmployeeService implements EmployeeDAO {
                     if (Number.class.isAssignableFrom(f.getType())) {
                         buffer.append(f.get(obj)).append(", ");
                     } else
-                        buffer.append("\'").append(f.get(obj)).append("\'").append(", ");
+                        buffer.append("'").append(f.get(obj)).append("'").append(", ");
                 } else
                     buffer.append(f.get(obj)).append(", ");
 
             }
             buffer.replace(buffer.length() - 2, buffer.length(), ") ");
-            System.out.println(buffer.toString());
+            System.out.println(buffer);
 
             //Actual SQL Call
             Statement stmt = dbService.connect().createStatement();
@@ -55,7 +55,7 @@ public class EmployeeService implements EmployeeDAO {
     }
 
     @Override
-    public Integer updateEmployee(Employee obj) throws Exception {
+    public Integer update(Employee obj) throws Exception {
         StringBuffer buffer = new StringBuffer();
         buffer.append("UPDATE " + TABLE_NAME + " SET ");
         try {
@@ -71,20 +71,20 @@ public class EmployeeService implements EmployeeDAO {
                     if (Number.class.isAssignableFrom(f.getType())) {
                         buffer.append(fName).append(" = ").append(f.get(obj)).append(", ");
                     } else
-                        buffer.append(fName).append(" = ").append("\'").append(f.get(obj)).append("\'").append(", ");
+                        buffer.append(fName).append(" = ").append("'").append(f.get(obj)).append("'").append(", ");
                 } else {
                     uniqueIdentifierName = f.getName();
                     if (Number.class.isAssignableFrom(f.getType())) {
                         uniqueIdentifier = f.get(obj);
                     } else {
-                        uniqueIdentifier = "\'" + f.get(obj).toString() + "\'";
+                        uniqueIdentifier = "'" + f.get(obj).toString() + "'";
                     }
 
                 }
             }
             buffer.replace(buffer.length() - 2, buffer.length(), " ");
             buffer.append("WHERE ").append(uniqueIdentifierName).append(" = ").append(uniqueIdentifier);
-            System.out.println(buffer.toString());
+            System.out.println(buffer);
 
             //Actual SQL Call
             Statement stmt = dbService.connect().createStatement();
@@ -96,16 +96,6 @@ public class EmployeeService implements EmployeeDAO {
         } catch (Exception e) {
             throw e;
         }
-    }
-
-    @Override
-    public boolean deleteEmployee(Employee emp) {
-        return false;
-    }
-
-    @Override
-    public List<Employee> findEmployeeByProperty(EmployeeSearchType searchType, Object value) {
-        return null;
     }
 
     @Override
