@@ -1,14 +1,12 @@
 package com.teamOne.cs631.models;
 
-import com.teamOne.cs631.models.enums.JobType;
-import com.teamOne.cs631.util.IgnoreTable;
 import lombok.Data;
 
 @Data
 public class Employee {
-    public String SSN;
+    public Integer ID;
     public String startDate;
-    public JobType jobType;
+    public String jobType;
     public String first;
     public String last;
     public String minit;
