@@ -4,10 +4,10 @@ import lombok.Data;
 
 @Data
 public class Animal {
-    public Integer ID;
+    public Integer id;
     public Integer buildingId;
     public Integer speciesId;
     public String status;
     public Integer birthYear;
-    public Integer EnclosureId;
+    public Integer enclosureId;
 }

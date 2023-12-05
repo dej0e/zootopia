@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class HourlyRate {
-    public Integer ID;
+    public Integer id;
     public Double rate;
 }

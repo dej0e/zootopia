@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Enclosure {
-    public Integer ID;
+    public Integer id;
     public Integer buildingId;
     public Double sqft;
 }

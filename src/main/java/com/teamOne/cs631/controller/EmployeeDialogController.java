@@ -178,7 +178,7 @@ public class EmployeeDialogController {
 
     private Employee collectValues() {
         Employee employee = new Employee();
-        employee.ID = Integer.valueOf(idTextField.getText());
+        employee.id = Integer.valueOf(idTextField.getText());
         employee.jobType = jobTypeTextField.getText();
         employee.first = firstNameTextField.getText();
         employee.minit = minitTextField.getText();
@@ -187,7 +187,7 @@ public class EmployeeDialogController {
         employee.state = stateTextField.getText();
         employee.city = cityTextField.getText();
         employee.zip = zipTextField.getText();
-        employee.hourlyRateId = hourlyRateIdTextField.getText();
+        employee.hourlyRateId = Integer.valueOf(hourlyRateIdTextField.getText());
         employee.supervisorId = Integer.valueOf(supervisorIdTextField.getText());
         return employee;
 //        employee.startDate = startDateTextField.getText();
@@ -225,7 +225,7 @@ public class EmployeeDialogController {
 
     private void populateTextFieldsWithData(Employee e) {
         if (e == null) return;
-        idTextField.setText(e.getID().toString());
+        idTextField.setText(e.getId().toString());
         startDateTextField.setText(e.getStartDate());
         jobTypeTextField.setText(e.getJobType());
         firstNameTextField.setText(e.getFirst());
@@ -235,7 +235,7 @@ public class EmployeeDialogController {
         cityTextField.setText(e.getCity());
         stateTextField.setText(e.getState());
         zipTextField.setText(e.getZip());
-        hourlyRateIdTextField.setText(e.getHourlyRateId());
+        hourlyRateIdTextField.setText(e.getHourlyRateId().toString());
         supervisorIdTextField.setText(e.getSupervisorId().toString());
     }
 

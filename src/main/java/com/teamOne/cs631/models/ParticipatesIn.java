@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class ParticipatesIn {
-    public Integer speciesID;
+    public Integer speciesId;
     public Integer animalShowRevenueId;
     public Integer numberRequired;
 }

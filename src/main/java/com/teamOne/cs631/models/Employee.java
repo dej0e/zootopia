@@ -6,8 +6,8 @@ import lombok.Data;
 @Data
 public class Employee {
     @PKey
-    public Integer ID;
-    public String startDate;
+    public Integer id;
+    public String startDate; //DD-MMM-YY
     public String jobType;
     public String first;
     public String last;
@@ -16,7 +16,7 @@ public class Employee {
     public String city;
     public String state;
     public String zip;
-    public String hourlyRateId;
+    public Integer hourlyRateId;
     public Integer supervisorId;
     public Integer concessionRevenueId;
     public Integer zooAdmissionRevenueId;
