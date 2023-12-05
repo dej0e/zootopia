@@ -1,9 +1,11 @@
 package com.teamOne.cs631.models;
 
+import com.teamOne.cs631.util.PKey;
 import lombok.Data;
 
 @Data
 public class Employee {
+    @PKey
     public Integer ID;
     public String startDate;
     public String jobType;

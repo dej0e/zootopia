@@ -1,8 +1,11 @@
 package com.teamOne.cs631.controller;
 
 import com.teamOne.cs631.models.Employee;
+import com.teamOne.cs631.models.enums.UIMode;
 import com.teamOne.cs631.service.EmployeeService;
 import com.teamOne.cs631.util.ModelTableViewBuilder;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,6 +23,7 @@ import org.springframework.stereotype.Component;
 @Component
 @FxmlView("EmployeeDialog.fxml")
 public class EmployeeDialogController {
+    private UIMode uiMode;
     private Stage stage;
     @FXML
     private VBox employeeDialog;
@@ -55,6 +59,8 @@ public class EmployeeDialogController {
 
     @FXML
     public Button resetBtn;
+    @FXML
+    public Button submitBtn;
 
     @FXML
     public RadioButton updateRadioBtn;
@@ -65,6 +71,11 @@ public class EmployeeDialogController {
     EmployeeService employeeService;
     private Employee selectedEmployee;
 
+    @FXML
+    public ToggleGroup group;
+
+    public TableView<Employee> tableView;
+
     @Autowired
     public EmployeeDialogController(EmployeeService employeeService) {
         this.employeeService = employeeService;
@@ -72,16 +83,20 @@ public class EmployeeDialogController {
 
     @FXML
     public void initialize() {
-
+        uiMode = UIMode.VIEW;
         double width = Screen.getPrimary().getBounds().getWidth() * 0.6;
         double height = Screen.getPrimary().getBounds().getHeight() * 0.6;
         this.stage = new Stage();
         stage.setScene(new Scene(employeeDialog, width, height));
 
-        TableView<Employee> tableView = ModelTableViewBuilder.buildUpon(Employee.class);
-        ObservableList<Employee> data = FXCollections.observableArrayList(employeeService.findAll());
-        tableView.setItems(data);
+        insertRadioBtn.setUserData(UIMode.INSERT);
+        viewRadioBtn.setUserData(UIMode.VIEW);
+        updateRadioBtn.setUserData(UIMode.UPDATE);
+
+        tableView = ModelTableViewBuilder.buildUpon(Employee.class);
         employeeDialog.getChildren().add(0, tableView);
+
+        loadDataIntoTable();
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             selectedEmployee = newSelection;
             populateTextFieldsWithData(newSelection);
@@ -91,19 +106,92 @@ public class EmployeeDialogController {
                 a -> {
                     resetTextFields();
                     tableView.getSelectionModel().clearSelection();
+                    submitBtn.setDisable(true);
+                    uiMode = UIMode.VIEW;
                 }
         );
-        updateRadioBtn.setOnAction(a -> updateRadioBtnClicked());
-        viewRadioBtn.setOnAction(a -> {
-            resetTextFields();
-            editable(false);
-            if (selectedEmployee != null)
-                populateTextFieldsWithData(selectedEmployee);
+
+        group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+            @Override
+            public void changed(ObservableValue<? extends Toggle> observableValue, Toggle toggle, Toggle t1) {
+
+                if (group.getSelectedToggle() != null) {
+                    UIMode mode = (UIMode) group.getSelectedToggle().getUserData();
+                    switch (mode) {
+                        case UPDATE:
+                            updateRadioBtnClicked();
+                            uiMode = UIMode.UPDATE;
+                            break;
+                        case VIEW:
+                            resetTextFields();
+                            editable(false);
+                            submitBtn.setDisable(true);
+                            uiMode = UIMode.VIEW;
+
+                            if (selectedEmployee != null)
+                                populateTextFieldsWithData(selectedEmployee);
+                            break;
+
+                        case INSERT:
+                            resetTextFields();
+                            editable(true);
+                            submitBtn.setDisable(false);
+                            uiMode = UIMode.INSERT;
+                            break;
+                    }
+
+
+                }
+            }
         });
-        insertRadioBtn.setOnAction(a -> {
-            resetTextFields();
-            editable(true);
+        submitBtn.setOnAction(a -> {
+            Integer changedCount = 0;
+            try {
+                switch (uiMode) {
+                    case VIEW:
+                        return;
+                    case UPDATE:
+                        Employee e = collectValues();
+                        changedCount = employeeService.updateEmployee(e);
+                        break;
+                    case INSERT:
+                        Employee e1 = collectValues();
+                        changedCount = employeeService.insertEmployee(e1);
+                        break;
+                }
+                if (changedCount > 0) {
+                    loadDataIntoTable();
+                    viewRadioBtn.setSelected(true);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
+    }
+
+    private void loadDataIntoTable() {
+        ObservableList<Employee> data = FXCollections.observableArrayList(employeeService.findAll());
+        tableView.setItems(data);
+    }
+
+    private Employee collectValues() {
+        Employee employee = new Employee();
+        employee.ID = Integer.valueOf(idTextField.getText());
+        employee.jobType = jobTypeTextField.getText();
+        employee.first = firstNameTextField.getText();
+        employee.minit = minitTextField.getText();
+        employee.last = lastNameTextField.getText();
+        employee.street = streetTextField.getText();
+        employee.state = stateTextField.getText();
+        employee.city = cityTextField.getText();
+        employee.zip = zipTextField.getText();
+        employee.hourlyRateId = hourlyRateIdTextField.getText();
+        employee.supervisorId = Integer.valueOf(supervisorIdTextField.getText());
+        return employee;
+//        employee.startDate = startDateTextField.getText();
+//        employee.startDate = startDateTextField.getText();
+//        employee.startDate = startDateTextField.getText();
+
 
     }
 
@@ -111,15 +199,14 @@ public class EmployeeDialogController {
         System.out.println("Update RadioBtn Clicked");
         populateTextFieldsWithData(selectedEmployee);
         editable(true);
+        uiMode = UIMode.UPDATE;
+        submitBtn.setDisable(false);
     }
 
     public void resetTextFields() {
-
         for (Node node : anchorPane.getChildren()) {
             if (node instanceof TextField) {
                 ((TextField) node).setText("");
-            } else if (node instanceof RadioButton) {
-                ((RadioButton) node).setSelected(false);
             }
         }
         editable(false);

@@ -3,55 +3,44 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.text.Font?>
-<VBox fx:id="employeeDialog" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.teamOne.cs631.controller.EmployeeDialogController">
+<VBox fx:id="employeeDialog" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teamOne.cs631.controller.EmployeeDialogController">
     <AnchorPane fx:id="anchorPane">
         <children>
-            <TextField fx:id="idTextField" editable="false" layoutX="130.0" layoutY="34.0"/>
-            <TextField fx:id="startDateTextField" editable="false" layoutX="130.0" layoutY="174.0"/>
-            <TextField fx:id="jobTypeTextField" editable="false" layoutX="130.0" layoutY="139.0"/>
-            <TextField fx:id="firstNameTextField" editable="false" layoutX="130.0" layoutY="105.0"/>
-            <TextField fx:id="minitTextField" editable="false" layoutX="130.0" layoutY="70.0"/>
-
-            <Label layoutX="22.0" layoutY="38.0" prefHeight="18.0" prefWidth="75.0" text="ID"/>
-            <Label layoutX="22.0" layoutY="73.0" prefHeight="18.0" prefWidth="75.0" text="StartDate"/>
-            <Label layoutX="22.0" layoutY="108.0" prefHeight="18.0" prefWidth="75.0" text="JobType"/>
-            <Label layoutX="22.0" layoutY="142.0" prefHeight="18.0" prefWidth="75.0" text="First"/>
-            <Label layoutX="22.0" layoutY="177.0" prefHeight="18.0" prefWidth="75.0" text="Minit">
-                <font>
-                    <Font size="15.0"/>
-                </font>
-            </Label>
-            <TextField fx:id="lastNameTextField" editable="false" layoutX="130.0" layoutY="207.0"/>
-            <Label layoutX="22.0" layoutY="211.0" prefHeight="18.0" prefWidth="75.0" text="Last"/>
-            <TextField fx:id="streetTextField" editable="false" layoutX="130.0" layoutY="240.0"/>
-            <Label layoutX="22.0" layoutY="244.0" prefHeight="18.0" prefWidth="75.0" text="Street"/>
-            <TextField fx:id="cityTextField" editable="false" layoutX="130.0" layoutY="275.0"/>
-            <Label layoutX="22.0" layoutY="279.0" prefHeight="18.0" prefWidth="75.0" text="City"/>
-            <TextField fx:id="stateTextField"  editable="false" layoutX="130.0" layoutY="312.0"/>
-            <Label layoutX="22.0" layoutY="316.0" prefHeight="18.0" prefWidth="75.0" text="State"/>
-            <TextField fx:id="zipTextField" editable="false" layoutX="408.0" layoutY="34.0"/>
-            <Label layoutX="300.0" layoutY="38.0" prefHeight="18.0" prefWidth="75.0" text="Zip"/>
-            <TextField fx:id="hourlyRateIdTextField"  editable="false" layoutX="408.0" layoutY="69.0"/>
-            <Label layoutX="300.0" layoutY="73.0" prefHeight="18.0" prefWidth="75.0" text="HourlyRate"/>
-            <TextField fx:id="supervisorIdTextField"  editable="false" layoutX="408.0" layoutY="105.0"/>
-            <Label layoutX="300.0" layoutY="109.0" prefHeight="18.0" prefWidth="75.0" text="SuperVisorID"/>
-            <Button fx:id="mainPage" layoutX="254.0" layoutY="360.0" mnemonicParsing="false" text="MainPage"/>
+            <TextField fx:id="idTextField" editable="false" layoutX="130.0" layoutY="34.0" />
+            <TextField fx:id="minitTextField" editable="false" layoutX="130.0" layoutY="70.0" />
+            <TextField fx:id="jobTypeTextField" editable="false" layoutX="130.0" layoutY="105.0" />
+            <TextField fx:id="firstNameTextField" editable="false" layoutX="130.0" layoutY="140.0" />
+            <TextField fx:id="startDateTextField" editable="false" layoutX="130.0" layoutY="174.0" />
+            <Label layoutX="22.0" layoutY="38.0" prefHeight="18.0" prefWidth="75.0" text="ID" />
+            <Label layoutX="22.0" layoutY="180.0" prefHeight="18.0" prefWidth="75.0" text="StartDate" />
+            <Label layoutX="22.0" layoutY="108.0" prefHeight="18.0" prefWidth="75.0" text="JobType" />
+            <Label layoutX="22.0" layoutY="142.0" prefHeight="18.0" prefWidth="75.0" text="First" />
+            <Label layoutX="22.0" layoutY="72.0" prefHeight="18.0" prefWidth="75.0" text="Minit" />
+            <TextField fx:id="lastNameTextField" editable="false" layoutX="130.0" layoutY="207.0" />
+            <Label layoutX="22.0" layoutY="211.0" prefHeight="18.0" prefWidth="75.0" text="Last" />
+            <TextField fx:id="streetTextField" editable="false" layoutX="130.0" layoutY="240.0" />
+            <Label layoutX="22.0" layoutY="244.0" prefHeight="18.0" prefWidth="75.0" text="Street" />
+            <TextField fx:id="cityTextField" editable="false" layoutX="130.0" layoutY="275.0" />
+            <Label layoutX="22.0" layoutY="279.0" prefHeight="18.0" prefWidth="75.0" text="City" />
+            <TextField fx:id="stateTextField" editable="false" layoutX="130.0" layoutY="312.0" />
+            <Label layoutX="22.0" layoutY="316.0" prefHeight="18.0" prefWidth="75.0" text="State" />
+            <TextField fx:id="zipTextField" editable="false" layoutX="408.0" layoutY="34.0" />
+            <Label layoutX="300.0" layoutY="38.0" prefHeight="18.0" prefWidth="75.0" text="Zip" />
+            <TextField fx:id="hourlyRateIdTextField" editable="false" layoutX="408.0" layoutY="69.0" />
+            <Label layoutX="300.0" layoutY="73.0" prefHeight="18.0" prefWidth="75.0" text="HourlyRate" />
+            <TextField fx:id="supervisorIdTextField" editable="false" layoutX="408.0" layoutY="105.0" />
+            <Label layoutX="300.0" layoutY="109.0" prefHeight="18.0" prefWidth="75.0" text="SuperVisorID" />
             <RadioButton fx:id="insertRadioBtn" layoutX="332.0" layoutY="190.0" mnemonicParsing="false" text="Insert">
-                <toggleGroup>
-                    <ToggleGroup fx:id="radiobtn"/>
-                </toggleGroup>
-            </RadioButton>
-            <RadioButton fx:id="updateRadioBtn" layoutX="332.0" layoutY="212.0" mnemonicParsing="false" text="Update"
-                         toggleGroup="$radiobtn"/>
-            <RadioButton fx:id="viewRadioBtn" layoutX="332.0" layoutY="235.0" mnemonicParsing="false" text="View"
-                         toggleGroup="$radiobtn"/>
-            <Button fx:id="closeButton" alignment="CENTER" layoutX="791.0" layoutY="155.0" mnemonicParsing="false"
-                    text="Close" textAlignment="CENTER"/>
-            <Button fx:id="submitBtn" disable="true" layoutX="130.0" layoutY="360.0" mnemonicParsing="false"
-                    text="Submit"/>
-            <Button fx:id="resetBtn" layoutX="198.0" layoutY="360.0" mnemonicParsing="false" text="Reset"/>
+            <toggleGroup>
+               <ToggleGroup fx:id="group" />
+            </toggleGroup></RadioButton>
+            <RadioButton fx:id="updateRadioBtn" layoutX="332.0" layoutY="212.0" mnemonicParsing="false" text="Update" toggleGroup="$group" />
+            <RadioButton fx:id="viewRadioBtn" layoutX="332.0" layoutY="235.0" mnemonicParsing="false" text="View" toggleGroup="$group" />
+            <Button fx:id="closeButton" alignment="CENTER" layoutX="791.0" layoutY="155.0" mnemonicParsing="false" text="Close" textAlignment="CENTER" />
+            <Button fx:id="submitBtn" disable="true" layoutX="130.0" layoutY="360.0" mnemonicParsing="false" text="Submit" />
+            <Button fx:id="resetBtn" layoutX="198.0" layoutY="360.0" mnemonicParsing="false" text="Reset" />
+            <Button fx:id="mainPage" layoutX="254.0" layoutY="360.0" mnemonicParsing="false" text="MainPage" />
+
         </children>
     </AnchorPane>
 </VBox>

@@ -18,6 +18,7 @@ public class DBService implements DAO {
     private String dbUserName;
     @Value("spring.datasource.password")
     private String dbPw;
+
     @PostConstruct
     @Override
     public void setup() {
@@ -30,7 +31,8 @@ public class DBService implements DAO {
 
     @Override
     public Connection connect() throws Exception {
-        connection = DriverManager.getConnection(connectionString);
+        if (connection!=null && connection.isClosed())
+            connection = DriverManager.getConnection(connectionString);
         return connection;
     }
 
