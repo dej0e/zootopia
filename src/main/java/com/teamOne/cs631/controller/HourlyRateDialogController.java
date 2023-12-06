@@ -1,9 +1,9 @@
 package com.teamOne.cs631.controller;
 
-import com.teamOne.cs631.models.Employee;
+import com.teamOne.cs631.models.Animal;
 import com.teamOne.cs631.models.HourlyRate;
 import com.teamOne.cs631.models.enums.UIMode;
-import com.teamOne.cs631.service.EmployeeService;
+import com.teamOne.cs631.service.AnimalService;
 import com.teamOne.cs631.service.HourlyRateService;
 import com.teamOne.cs631.util.DateUtils;
 import com.teamOne.cs631.util.ModelTableViewBuilder;
@@ -19,19 +19,17 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import net.rgielen.fxweaver.core.FxControllerAndView;
-import net.rgielen.fxweaver.core.FxWeaver;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-@FxmlView("EmployeeDialog.fxml")
-public class EmployeeDialogController {
+@FxmlView("HourlyRateDialog.fxml")
+public class HourlyRateDialogController {
     private UIMode uiMode;
     private Stage stage;
     @FXML
-    private VBox employeeDialog;
+    private VBox vBox;
     @FXML
     private AnchorPane anchorPane;
     @FXML
@@ -40,29 +38,8 @@ public class EmployeeDialogController {
     @FXML
     public TextField idTextField;
     @FXML
-    public TextField startDateTextField;
-    @FXML
-    public TextField jobTypeTextField;
-    @FXML
-    public TextField firstNameTextField;
-    @FXML
-    public TextField minitTextField;
-    @FXML
-    public TextField lastNameTextField;
-    @FXML
-    public TextField streetTextField;
-    @FXML
-    public TextField cityTextField;
-    @FXML
-    public TextField stateTextField;
-    @FXML
-    public TextField zipTextField;
-    @FXML
-    public TextField hourlyRateIdTextField;
-    @FXML
-    public TextField supervisorIdTextField;
-    @FXML
-    public DatePicker startDateDatePicker;
+    public TextField rateTextField;
+
     @FXML
     public Button resetBtn;
     @FXML
@@ -74,23 +51,17 @@ public class EmployeeDialogController {
     public RadioButton viewRadioBtn;
     @FXML
     public RadioButton insertRadioBtn;
-    EmployeeService employeeService;
-    private Employee selectedEmployee;
-
-    @FXML
-    public Button openHourlyRateDialogBtn;
+    HourlyRateService service;
+    private HourlyRate selectedHourlyRate;
 
     @FXML
     public ToggleGroup group;
 
-    public TableView<Employee> tableView;
-
-    private final FxWeaver fxWeaver;
+    public TableView<HourlyRate> tableView;
 
     @Autowired
-    public EmployeeDialogController(FxWeaver fxWeaver, EmployeeService employeeService) {
-        this.employeeService = employeeService;
-        this.fxWeaver = fxWeaver;
+    public HourlyRateDialogController(HourlyRateService service) {
+        this.service = service;
     }
 
     @FXML
@@ -99,19 +70,19 @@ public class EmployeeDialogController {
         double width = Screen.getPrimary().getBounds().getWidth() * 0.6;
         double height = Screen.getPrimary().getBounds().getHeight() * 0.6;
         this.stage = new Stage();
-        stage.setScene(new Scene(employeeDialog, width, height));
+        stage.setScene(new Scene(vBox, width, height));
 
         insertRadioBtn.setUserData(UIMode.INSERT);
         viewRadioBtn.setUserData(UIMode.VIEW);
         updateRadioBtn.setUserData(UIMode.UPDATE);
         viewRadioBtn.setSelected(true);
-        editable(false);
-        tableView = ModelTableViewBuilder.buildUpon(Employee.class);
-        employeeDialog.getChildren().add(0, tableView);
+
+        tableView = ModelTableViewBuilder.buildUpon(HourlyRate.class);
+        vBox.getChildren().add(0, tableView);
 
         loadDataIntoTable();
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            selectedEmployee = newSelection;
+            selectedHourlyRate = newSelection;
             populateTextFieldsWithData(newSelection);
 
         });
@@ -142,8 +113,8 @@ public class EmployeeDialogController {
                             submitBtn.setDisable(true);
                             uiMode = UIMode.VIEW;
 
-                            if (selectedEmployee != null)
-                                populateTextFieldsWithData(selectedEmployee);
+                            if (selectedHourlyRate != null)
+                                populateTextFieldsWithData(selectedHourlyRate);
                             break;
 
                         case INSERT:
@@ -165,12 +136,12 @@ public class EmployeeDialogController {
                     case VIEW:
                         return;
                     case UPDATE:
-                        Employee e = collectValues();
-                        changedCount = employeeService.update(e);
+                        HourlyRate e = collectValues();
+                        changedCount = service.update(e);
                         break;
                     case INSERT:
-                        Employee e1 = collectValues();
-                        changedCount = employeeService.insert(e1);
+                        HourlyRate e1 = collectValues();
+                        changedCount = service.insert(e1);
                         break;
                 }
                 if (changedCount > 0) {
@@ -181,48 +152,23 @@ public class EmployeeDialogController {
                 e.printStackTrace();
             }
         });
-        openHourlyRateDialogBtn.setOnAction(actionEvent -> {
-            try {
-                FxControllerAndView<HourlyRateDialogController, VBox> tiledDialog =
-                        fxWeaver.load(HourlyRateDialogController.class);
-                tiledDialog.getController().show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
     }
 
     private void loadDataIntoTable() {
-        ObservableList<Employee> data = FXCollections.observableArrayList(employeeService.findAll());
+        ObservableList<HourlyRate> data = FXCollections.observableArrayList(service.findAll());
         tableView.setItems(data);
     }
 
-    private Employee collectValues() {
-        Employee employee = new Employee();
-        employee.id = Integer.valueOf(idTextField.getText());
-        employee.startDate = DateUtils.getDate(startDateDatePicker.getValue());
-
-        employee.jobType = jobTypeTextField.getText();
-        employee.first = firstNameTextField.getText();
-        employee.minit = minitTextField.getText();
-        employee.last = lastNameTextField.getText();
-        employee.street = streetTextField.getText();
-        employee.state = stateTextField.getText();
-        employee.city = cityTextField.getText();
-        employee.zip = zipTextField.getText();
-        employee.hourlyRateId = Integer.valueOf(hourlyRateIdTextField.getText());
-        employee.supervisorId = Integer.valueOf(supervisorIdTextField.getText());
-        return employee;
-//        employee.startDate = startDateTextField.getText();
-//        employee.startDate = startDateTextField.getText();
-//        employee.startDate = startDateTextField.getText();
-
-
+    private HourlyRate collectValues() {
+        HourlyRate a = new HourlyRate();
+        a.id = Integer.valueOf(idTextField.getText());
+        a.rate = Double.valueOf(rateTextField.getText());
+        return a;
     }
 
     public void updateRadioBtnClicked() {
         System.out.println("Update RadioBtn Clicked");
-        populateTextFieldsWithData(selectedEmployee);
+        populateTextFieldsWithData(selectedHourlyRate);
         editable(true);
         uiMode = UIMode.UPDATE;
         submitBtn.setDisable(false);
@@ -237,6 +183,7 @@ public class EmployeeDialogController {
                 ((DatePicker) node).setValue(null);
             }
         }
+
         editable(false);
     }
 
@@ -247,30 +194,16 @@ public class EmployeeDialogController {
                 ((TextField) node).setEditable(value);
             }
             if (node instanceof DatePicker) {
-                ((DatePicker) node).setDisable(!value);
-
+                ((DatePicker) node).setEditable(value);
             }
         }
     }
 
-    private void populateTextFieldsWithData(Employee e) {
+    private void populateTextFieldsWithData(HourlyRate e) {
         if (e == null) return;
         idTextField.setText(e.getId().toString());
-//        startDateTextField.setText(e.getStartDate());
-        startDateDatePicker.setValue(DateUtils.getLocalDate(e.getStartDate()));
-
-        jobTypeTextField.setText(e.getJobType());
-        firstNameTextField.setText(e.getFirst());
-        minitTextField.setText(e.getMinit());
-        lastNameTextField.setText(e.getLast());
-        streetTextField.setText(e.getStreet());
-        cityTextField.setText(e.getCity());
-        stateTextField.setText(e.getState());
-        zipTextField.setText(e.getZip());
-        hourlyRateIdTextField.setText(e.getHourlyRateId().toString());
-        supervisorIdTextField.setText(e.getSupervisorId().toString());
+        rateTextField.setText(e.getRate().toString());
     }
-
 
     public void show() {
         stage.show();

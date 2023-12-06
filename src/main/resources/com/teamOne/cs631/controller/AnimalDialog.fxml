@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -28,10 +29,13 @@
             <RadioButton fx:id="updateRadioBtn" layoutX="331.0" layoutY="277.0" mnemonicParsing="false" text="Update" toggleGroup="$group" />
             <RadioButton fx:id="viewRadioBtn" layoutX="331.0" layoutY="300.0" mnemonicParsing="false" text="View" toggleGroup="$group" />
 
-            <Button fx:id="closeButton" alignment="CENTER" layoutX="791.0" layoutY="155.0" mnemonicParsing="false" text="Close" textAlignment="CENTER" />
+            <Button fx:id="closeButton" alignment="CENTER" layoutX="215.0" layoutY="346.0" mnemonicParsing="false" text="Close" textAlignment="CENTER" />
 
             <Button fx:id="submitBtn" layoutX="83.0" layoutY="346.0" mnemonicParsing="false" text="Submit" />
-            <Button fx:id="resetBtn" layoutX="198.0" layoutY="346.0" mnemonicParsing="false" text="Reset" />
+            <Button fx:id="resetBtn" layoutX="152.0" layoutY="346.0" mnemonicParsing="false" text="Reset" />
         </children>
+      <padding>
+         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+      </padding>
     </AnchorPane>
 </VBox>

@@ -29,6 +29,7 @@
             <Label layoutX="300.0" layoutY="38.0" prefHeight="18.0" prefWidth="75.0" text="Zip" />
             <TextField fx:id="hourlyRateIdTextField" editable="false" layoutX="408.0" layoutY="69.0" />
             <Label layoutX="300.0" layoutY="73.0" prefHeight="18.0" prefWidth="75.0" text="HourlyRate" />
+            <Button fx:id="openHourlyRateDialogBtn" layoutX="577.0" layoutY="69.0" mnemonicParsing="false" text="Open Hourly Rate" />
             <TextField fx:id="supervisorIdTextField" editable="false" layoutX="408.0" layoutY="105.0" />
             <Label layoutX="300.0" layoutY="109.0" prefHeight="18.0" prefWidth="75.0" text="SuperVisorID" />
             <RadioButton fx:id="insertRadioBtn" layoutX="332.0" layoutY="190.0" mnemonicParsing="false" text="Insert">
@@ -37,14 +38,13 @@
             </toggleGroup></RadioButton>
             <RadioButton fx:id="updateRadioBtn" layoutX="332.0" layoutY="212.0" mnemonicParsing="false" text="Update" toggleGroup="$group" />
             <RadioButton fx:id="viewRadioBtn" layoutX="332.0" layoutY="235.0" mnemonicParsing="false" text="View" toggleGroup="$group" />
-            <Button fx:id="closeButton" alignment="CENTER" layoutX="544.0" layoutY="249.0" mnemonicParsing="false" text="Close" textAlignment="CENTER" />
+            <Button fx:id="closeButton" alignment="CENTER" layoutX="257.0" layoutY="360.0" mnemonicParsing="false" text="Close" textAlignment="CENTER" />
             <Button fx:id="submitBtn" disable="true" layoutX="130.0" layoutY="360.0" mnemonicParsing="false" text="Submit" />
             <Button fx:id="resetBtn" layoutX="198.0" layoutY="360.0" mnemonicParsing="false" text="Reset" />
-            <Button fx:id="mainPage" layoutX="254.0" layoutY="360.0" mnemonicParsing="false" text="MainPage" />
 
         </children>
-      <padding>
-         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-      </padding>
+        <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+        </padding>
     </AnchorPane>
 </VBox>
