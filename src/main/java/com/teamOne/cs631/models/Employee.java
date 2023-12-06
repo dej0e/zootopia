@@ -3,11 +3,13 @@ package com.teamOne.cs631.models;
 import com.teamOne.cs631.util.PKey;
 import lombok.Data;
 
+import java.sql.Date;
+
 @Data
 public class Employee {
     @PKey
     public Integer id;
-    public String startDate; //DD-MMM-YY
+    public Date startDate; //DD-MMM-YY
     public String jobType;
     public String first;
     public String last;

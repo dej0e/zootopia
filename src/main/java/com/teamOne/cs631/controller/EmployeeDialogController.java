@@ -3,6 +3,7 @@ package com.teamOne.cs631.controller;
 import com.teamOne.cs631.models.Employee;
 import com.teamOne.cs631.models.enums.UIMode;
 import com.teamOne.cs631.service.EmployeeService;
+import com.teamOne.cs631.util.DateUtils;
 import com.teamOne.cs631.util.ModelTableViewBuilder;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -56,7 +57,8 @@ public class EmployeeDialogController {
     public TextField hourlyRateIdTextField;
     @FXML
     public TextField supervisorIdTextField;
-
+    @FXML
+    public DatePicker startDateDatePicker;
     @FXML
     public Button resetBtn;
     @FXML
@@ -93,7 +95,7 @@ public class EmployeeDialogController {
         viewRadioBtn.setUserData(UIMode.VIEW);
         updateRadioBtn.setUserData(UIMode.UPDATE);
         viewRadioBtn.setSelected(true);
-
+        editable(false);
         tableView = ModelTableViewBuilder.buildUpon(Employee.class);
         employeeDialog.getChildren().add(0, tableView);
 
@@ -179,6 +181,8 @@ public class EmployeeDialogController {
     private Employee collectValues() {
         Employee employee = new Employee();
         employee.id = Integer.valueOf(idTextField.getText());
+        employee.startDate = DateUtils.getDate(startDateDatePicker.getValue());
+
         employee.jobType = jobTypeTextField.getText();
         employee.first = firstNameTextField.getText();
         employee.minit = minitTextField.getText();
@@ -210,6 +214,9 @@ public class EmployeeDialogController {
             if (node instanceof TextField) {
                 ((TextField) node).setText("");
             }
+            if (node instanceof DatePicker) {
+                ((DatePicker) node).setValue(null);
+            }
         }
         editable(false);
     }
@@ -220,13 +227,19 @@ public class EmployeeDialogController {
             if (node instanceof TextField) {
                 ((TextField) node).setEditable(value);
             }
+            if (node instanceof DatePicker) {
+                ((DatePicker) node).setDisable(!value);
+
+            }
         }
     }
 
     private void populateTextFieldsWithData(Employee e) {
         if (e == null) return;
         idTextField.setText(e.getId().toString());
-        startDateTextField.setText(e.getStartDate());
+//        startDateTextField.setText(e.getStartDate());
+        startDateDatePicker.setValue(DateUtils.getLocalDate(e.getStartDate()));
+
         jobTypeTextField.setText(e.getJobType());
         firstNameTextField.setText(e.getFirst());
         minitTextField.setText(e.getMinit());
@@ -241,7 +254,7 @@ public class EmployeeDialogController {
 
     private void clearValuesFromTextFields() {
         idTextField.setText("");
-        startDateTextField.setText("");
+        startDateDatePicker.setValue(null);
         jobTypeTextField.setText("");
         firstNameTextField.setText("");
         minitTextField.setText("");
