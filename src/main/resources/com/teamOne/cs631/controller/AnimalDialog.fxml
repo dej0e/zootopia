@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:id="vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teamOne.cs631.controller.AnimalDialogController">
+    <AnchorPane fx:id="anchorPane">
+
+        <children>
+            <TextField fx:id="idTextField" editable="false" layoutX="110.0" layoutY="35.0" />
+            <Label layoutX="22.0" layoutY="38.0" prefHeight="18.0" prefWidth="75.0" text="ID" />
+
+            <TextField fx:id="buildingIdTextField" editable="false" layoutX="110.0" layoutY="71.0" />
+            <Label layoutX="22.0" layoutY="74.0" prefHeight="18.0" prefWidth="129.0" text="Building ID" />
+            <TextField fx:id="speciesIdTextField" editable="false" layoutX="110.0" layoutY="104.0" />
+            <Label layoutX="22.0" layoutY="107.0" prefHeight="18.0" prefWidth="75.0" text="Species ID" />
+            <TextField fx:id="statusTextField" editable="false" layoutX="110.0" layoutY="140.0" />
+            <Label layoutX="22.0" layoutY="143.0" prefHeight="18.0" prefWidth="129.0" text="Status" />
+            <DatePicker fx:id="birthYearDatePicker" layoutX="110.0" layoutY="178.0" prefHeight="25.0" prefWidth="149.0" />
+            <Label layoutX="22.0" layoutY="182.0" prefHeight="18.0" prefWidth="75.0" text="BirthYear" />
+            <TextField fx:id="enclosureIdTextField" editable="false" layoutX="110.0" layoutY="217.0" />
+            <Label layoutX="22.0" layoutY="220.0" prefHeight="18.0" prefWidth="75.0" text="Enclosure ID" />
+            <RadioButton fx:id="insertRadioBtn" layoutX="331.0" layoutY="255.0" mnemonicParsing="false" text="Insert">
+                <toggleGroup>
+                    <ToggleGroup fx:id="group" />
+                </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="updateRadioBtn" layoutX="331.0" layoutY="277.0" mnemonicParsing="false" text="Update" toggleGroup="$group" />
+            <RadioButton fx:id="viewRadioBtn" layoutX="331.0" layoutY="300.0" mnemonicParsing="false" text="View" toggleGroup="$group" />
+
+            <Button fx:id="closeButton" alignment="CENTER" layoutX="791.0" layoutY="155.0" mnemonicParsing="false" text="Close" textAlignment="CENTER" />
+
+            <Button fx:id="submitBtn" layoutX="83.0" layoutY="346.0" mnemonicParsing="false" text="Submit" />
+            <Button fx:id="resetBtn" layoutX="198.0" layoutY="346.0" mnemonicParsing="false" text="Reset" />
+        </children>
+    </AnchorPane>
+</VBox>

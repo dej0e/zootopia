@@ -1,4 +1,4 @@
-package com.teamOne.cs631.service;
+package com.teamOne.cs631.service.dao;
 
 import com.teamOne.cs631.models.Employee;
 import com.teamOne.cs631.models.enums.EmployeeSearchType;
@@ -10,3 +10,4 @@ public interface EmployeeDAO {
     public Integer update(Employee emp) throws Exception;
     public List<Employee> findAll();
 }
+

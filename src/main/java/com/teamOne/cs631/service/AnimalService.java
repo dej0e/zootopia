@@ -1,8 +1,10 @@
+
+
 package com.teamOne.cs631.service;
 
+import com.teamOne.cs631.models.Animal;
 import com.teamOne.cs631.models.Employee;
-import com.teamOne.cs631.service.dao.EmployeeDAO;
-import com.teamOne.cs631.util.PKey;
+import com.teamOne.cs631.service.dao.AnimalDAO;
 import lombok.var;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
@@ -10,19 +12,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
+import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.List;
 
 @Service
-public class EmployeeService implements EmployeeDAO {
+public class AnimalService implements AnimalDAO {
 
-    public static final String TABLE_NAME = "EMPLOYEE";
+    public static final String TABLE_NAME = "ANIMAL";
     @Autowired
     protected DBService dbService;
     private final QueryRunner dbAccess = new QueryRunner();
 
     @Override
-    public Integer insert(Employee obj) throws Exception {
+    public Integer insert(Animal obj) throws Exception {
         StringBuffer buffer = new StringBuffer();
         buffer.append("INSERT INTO " + TABLE_NAME + " VALUES (");
         try {
@@ -55,40 +58,22 @@ public class EmployeeService implements EmployeeDAO {
     }
 
     @Override
-    public Integer update(Employee obj) throws Exception {
+    public Integer update(Animal obj) throws Exception {
         StringBuffer buffer = new StringBuffer();
-        buffer.append("UPDATE " + TABLE_NAME + " SET ");
         try {
-            var empClass = Class.forName(Employee.class.getName());
-            Object uniqueIdentifier = "";
-            String uniqueIdentifierName = "";
-            Field[] aClassFields = empClass.getDeclaredFields();
-            for (Field f : aClassFields) {
-                String fName = f.getName();
-                if (f.get(obj) == null)
-                    continue;
-                if (f.getAnnotation(PKey.class) == null) {
-                    if (Number.class.isAssignableFrom(f.getType())) {
-                        buffer.append(fName).append(" = ").append(f.get(obj)).append(", ");
-                    } else
-                        buffer.append(fName).append(" = ").append("'").append(f.get(obj)).append("'").append(", ");
-                } else {
-                    uniqueIdentifierName = f.getName();
-                    if (Number.class.isAssignableFrom(f.getType())) {
-                        uniqueIdentifier = f.get(obj);
-                    } else {
-                        uniqueIdentifier = "'" + f.get(obj).toString() + "'";
-                    }
+            PreparedStatement preparedStatement = dbService.connect().prepareStatement(
+                    "UPDATE " + TABLE_NAME + " SET BUILDINGID = ?, SPECIESID = ?, STATUS = ?, BIRTHYEAR = ?, ENCLOSUREID = ? WHERE ID = ?");
 
-                }
-            }
-            buffer.replace(buffer.length() - 2, buffer.length(), " ");
-            buffer.append("WHERE ").append(uniqueIdentifierName).append(" = ").append(uniqueIdentifier);
-            System.out.println(buffer);
+
+            preparedStatement.setObject(1, obj.getBuildingId());
+            preparedStatement.setObject(2, obj.getSpeciesId());
+            preparedStatement.setObject(3, obj.getStatus());
+            preparedStatement.setDate(4, obj.getBirthYear());
+            preparedStatement.setObject(5, obj.getEnclosureId());
+            preparedStatement.setObject(6, obj.getId());
 
             //Actual SQL Call
-            Statement stmt = dbService.connect().createStatement();
-            int updatedCount = stmt.executeUpdate(buffer.toString());
+            int updatedCount = preparedStatement.executeUpdate();
             System.out.println("Updated " + updatedCount + " rows");
 
             return updatedCount;
@@ -99,11 +84,11 @@ public class EmployeeService implements EmployeeDAO {
     }
 
     @Override
-    public List<Employee> findAll() {
+    public List<Animal> findAll() {
         try {
-            String query = "SELECT * FROM EMPLOYEE";
-            List<Employee> employees = dbAccess.query(dbService.connect(), query, new BeanListHandler<>(Employee.class));
-            return employees;
+            String query = "SELECT * FROM " + TABLE_NAME;
+            List<Animal> objList = dbAccess.query(dbService.connect(), query, new BeanListHandler<>(Animal.class));
+            return objList;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
