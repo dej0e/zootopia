@@ -21,6 +21,10 @@ public class MainController {
     public Button openEmployeeDialog;
     @FXML
     public Button openAnimalDialog;
+    @FXML
+    public Button openBuildingsDialog;
+    @FXML
+    public Button openRevenueTypesDialog;
 
     public MainController(FxWeaver fxWeaver) {
         this.fxWeaver = fxWeaver;
@@ -33,12 +37,41 @@ public class MainController {
                     fxWeaver.loadController(DialogController.class).show();
                 }
         );
+        
         openEmployeeDialog.setOnAction(
                 actionEvent -> {
                     FxControllerAndView<EmployeeDialogController, VBox> tiledDialog =
                             fxWeaver.load(EmployeeDialogController.class);
                     tiledDialog.getController().show();
                 }
+        );
+        openBuildingsDialog.setOnAction(
+            
+                actionEvent -> {
+                    try{
+                        FxControllerAndView<BuildingDialogController, VBox> tiledDialog =
+                                fxWeaver.load(BuildingDialogController.class);
+                        tiledDialog.getController().show();
+                    }catch(Exception e){
+                        e.printStackTrace();
+                        showAlert(e.getLocalizedMessage());
+                    }   
+                }
+            
+        );
+        openRevenueTypesDialog.setOnAction(
+            
+                actionEvent -> {
+                    try{
+                        FxControllerAndView<RevenueTypeDialogController, VBox> tiledDialog =
+                                fxWeaver.load(RevenueTypeDialogController.class);
+                        tiledDialog.getController().show();
+                    }catch(Exception e){
+                        e.printStackTrace();
+                        showAlert(e.getLocalizedMessage());
+                    }   
+                }
+            
         );
         openAnimalDialog.setOnAction(
                 actionEvent -> {
