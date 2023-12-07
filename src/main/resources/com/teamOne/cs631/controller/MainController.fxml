@@ -8,5 +8,9 @@
     <Button fx:id="openDialogButton" text="Open Simple Dialog"/>
     <Button fx:id="openEmployeeDialog" text="Open Employee DetailsDialog"/>
     <Button fx:id="openAnimalDialog" text="Open Animal DetailsDialog"/>
+    <Button fx:id="openBuildingsDialog" text="Open Building DetailsDialog"/>
+    <Button fx:id="openRevenueTypesDialog" text="Open RevenueTypes DetailsDialog"/>
+    <Button fx:id="openRevenueEventsDialog" text="Open RevenueEvents DetailsDialog"/>
+
 
 </VBox>

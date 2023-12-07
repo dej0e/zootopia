@@ -59,35 +59,7 @@ public class HourlyRateService implements HourlyRateDAO {
 
     @Override
     public Integer update(HourlyRate obj) throws Exception {
-//        StringBuffer buffer = new StringBuffer();
-//        buffer.append("UPDATE " + TABLE_NAME + " SET ");
-//        try {
-//            var empClass = Class.forName(Employee.class.getName());
-//            Object uniqueIdentifier = "";
-//            String uniqueIdentifierName = "";
-//            Field[] aClassFields = empClass.getDeclaredFields();
-//            for (Field f : aClassFields) {
-//                String fName = f.getName();
-//                if (f.get(obj) == null)
-//                    continue;
-//                if (f.getAnnotation(PKey.class) == null) {
-//                    if (Number.class.isAssignableFrom(f.getType())) {
-//                        buffer.append(fName).append(" = ").append(f.get(obj)).append(", ");
-//                    } else
-//                        buffer.append(fName).append(" = ").append("'").append(f.get(obj)).append("'").append(", ");
-//                } else {
-//                    uniqueIdentifierName = f.getName();
-//                    if (Number.class.isAssignableFrom(f.getType())) {
-//                        uniqueIdentifier = f.get(obj);
-//                    } else {
-//                        uniqueIdentifier = "'" + f.get(obj).toString() + "'";
-//                    }
-//
-//                }
-//            }
-//            buffer.replace(buffer.length() - 2, buffer.length(), " ");
-//            buffer.append("WHERE ").append(uniqueIdentifierName).append(" = ").append(uniqueIdentifier);
-//            System.out.println(buffer);
+
         try {
             PreparedStatement preparedStatement = dbService.connect().prepareStatement(
                     "UPDATE " + TABLE_NAME + " SET RATE = ? WHERE ID = ?");

@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
-import java.awt.*;
 
 /**
  * @author <a href="mailto:rene.gielen@gmail.com">Rene Gielen</a>
