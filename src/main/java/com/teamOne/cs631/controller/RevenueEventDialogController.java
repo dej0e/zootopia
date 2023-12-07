@@ -1,10 +1,11 @@
 package com.teamOne.cs631.controller;
 
-import com.teamOne.cs631.models.RevenueTypes;
+import com.teamOne.cs631.models.RevenueEvents;
 
 import com.teamOne.cs631.models.enums.UIMode;
 import com.teamOne.cs631.service.RevenueTypeService;
 
+import com.teamOne.cs631.util.DateUtils;
 import com.teamOne.cs631.util.ModelTableViewBuilder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,28 +22,33 @@ import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.sql.Date;
+
 @Component
-@FxmlView("RevenueTypeDialog.fxml")
-public class RevenueTypeDialogController {
+@FxmlView("RevenueEventsDialog.fxml")
+public class RevenueEventDialogController {
     private UIMode uiMode;
     private Stage stage;
     @FXML
     private VBox vBox;
     @FXML
     private AnchorPane anchorPane;
+
+    @FXML
+    public DatePicker dateTimeTextField;
+
+    @FXML
+    public TextField ticketsSoldTextField;
+    @FXML
+    public TextField revenueTextField;
+
     @FXML
     public Button closeButton;
 
-
     @FXML
     public TextField revenueTypeIdTextField;
-    @FXML
-    public TextField nameTextField;
-    @FXML
-    public TextField buildingIdTextField;
 
-    @FXML
-    public TextField eventTypeTextField;
+
     @FXML
     public Button resetBtn;
     @FXML
@@ -56,17 +62,17 @@ public class RevenueTypeDialogController {
     public RadioButton insertRadioBtn;
     RevenueTypeService revenueTypeService;
 
-    private RevenueTypes selectedRow;
+    private RevenueEvents selectedRow;
 
     @FXML
     public ToggleGroup group;
 
-    public TableView<RevenueTypes> tableView;
+    public TableView<RevenueEvents> tableView;
 
     private final FxWeaver fxWeaver;
 
     @Autowired
-    public RevenueTypeDialogController(FxWeaver fxWeaver, RevenueTypeService revenueTypeService) {
+    public RevenueEventDialogController(FxWeaver fxWeaver, RevenueTypeService revenueTypeService) {
         this.revenueTypeService = revenueTypeService;
         this.fxWeaver = fxWeaver;
     }
@@ -84,7 +90,7 @@ public class RevenueTypeDialogController {
         updateRadioBtn.setUserData(UIMode.UPDATE);
         viewRadioBtn.setSelected(true);
         editable(false);
-        tableView = ModelTableViewBuilder.buildUpon(RevenueTypes.class);
+        tableView = ModelTableViewBuilder.buildUpon(RevenueEvents.class);
         vBox.getChildren().add(0, tableView);
 
         loadDataIntoTable();
@@ -140,13 +146,13 @@ public class RevenueTypeDialogController {
                     case VIEW:
                         return;
                     case UPDATE:
-                        RevenueTypes u1 = collectRevenueTypesValues();
-                        changedCount = revenueTypeService.updateRevenueTypes(u1);
+                        RevenueEvents u1 = collectRevenueEventsValues();
+                        changedCount = revenueTypeService.updateRevenueEvents(u1);
 
                         break;
                     case INSERT:
-                        RevenueTypes i1 = collectRevenueTypesValues();
-                        changedCount = revenueTypeService.insertRevenueTypes(i1);
+                        RevenueEvents i1 = collectRevenueEventsValues();
+                        changedCount = revenueTypeService.insertRevenueEvents(i1);
 
                         break;
                 }
@@ -162,19 +168,20 @@ public class RevenueTypeDialogController {
     }
 
     private void loadDataIntoTable() {
-        ObservableList<RevenueTypes> data = FXCollections.observableArrayList(revenueTypeService.findAllRevenueTypes());
+        ObservableList<RevenueEvents> data = FXCollections.observableArrayList(revenueTypeService.findAllRevenueEvents());
         tableView.setItems(data);
     }
 
-    private RevenueTypes collectRevenueTypesValues() {
-        RevenueTypes revenueTypes = new RevenueTypes();
 
-        revenueTypes.setRevenueTypeId(Integer.valueOf(revenueTypeIdTextField.getText()));
-        revenueTypes.setName(nameTextField.getText());
-        revenueTypes.setType(eventTypeTextField.getText());
-        revenueTypes.setBuildingId(Integer.valueOf(buildingIdTextField.getText()));
+    private RevenueEvents collectRevenueEventsValues() {
+        RevenueEvents revenueEvents = new RevenueEvents();
+        //datetime
+        revenueEvents.setDateTime(Date.valueOf(dateTimeTextField.getValue()));
+        revenueEvents.setRevenueId(Integer.valueOf(revenueTypeIdTextField.getText()));
+        revenueEvents.setTicketsSold(Double.valueOf(ticketsSoldTextField.getText()));
+        revenueEvents.setRevenue(Double.valueOf(revenueTextField.getText()));
 
-        return revenueTypes;
+        return revenueEvents;
 
 
     }
@@ -212,13 +219,13 @@ public class RevenueTypeDialogController {
         }
     }
 
-    private void populateTextFieldsWithData(RevenueTypes e) {
+    private void populateTextFieldsWithData(RevenueEvents e) {
         if (e == null) return;
 
-        revenueTypeIdTextField.setText(e.getRevenueTypeId().toString());
-        nameTextField.setText(e.getName());
-        eventTypeTextField.setText(e.getType());
-        buildingIdTextField.setText(e.getBuildingId().toString());
+        revenueTypeIdTextField.setText(e.getRevenueId().toString());
+        dateTimeTextField.setValue(DateUtils.getLocalDate(e.getDateTime()));
+        ticketsSoldTextField.setText(e.getTicketsSold().toString());
+        revenueTextField.setText(e.getRevenue().toString());
 
     }
 

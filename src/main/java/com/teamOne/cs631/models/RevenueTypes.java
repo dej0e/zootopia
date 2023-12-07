@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class RevenueTypes {
-    public Integer revenueTypeId;
-    public String name;
-    public String type;
-    public Integer buildingId;
+        public Integer revenueTypeId;
+        public String name;
+        public String type;
+        public Integer buildingId;
 }
