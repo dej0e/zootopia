@@ -5,11 +5,9 @@ import java.sql.Date;
 
 @Data
 public class RevenueJoin {
+    public String Attraction;
+    public Integer totalRevenue;
     public Date dateTime;
-    public Integer revenueId;
-    public Double ticketsSold;
-    public Double revenue;
-    public String name;
-    public String type;
-    public Integer buildingId;
+    public String RevenueSource;
+    
 }

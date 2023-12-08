@@ -1,15 +1,13 @@
 package com.teamOne.cs631.controller;
 
-
-
-import com.teamOne.cs631.models.Animal;
-import com.teamOne.cs631.models.AnimalJoinSpecies;
 import com.teamOne.cs631.models.Reports;
-import com.teamOne.cs631.models.RevenueEvents;
-import com.teamOne.cs631.models.RevenueJoin;
 import com.teamOne.cs631.service.ReportService;
-
-
+import com.teamOne.cs631.models.Query1Model;
+import com.teamOne.cs631.models.Query2Model;
+import com.teamOne.cs631.models.Query3Model;
+import com.teamOne.cs631.models.Query4Model;
+import com.teamOne.cs631.models.Query5Model;
+import com.teamOne.cs631.models.Query6Model;
 import com.teamOne.cs631.util.ModelTableViewBuilder;
 
 import javafx.collections.FXCollections;
@@ -39,16 +37,20 @@ public class ReportsDialogController {
     private AnchorPane anchorPane;
     @FXML
     public ToggleGroup group;
-    public TableView<RevenueEvents> tableView1;
-    public TableView<RevenueJoin> tableView2;
-    public TableView<AnimalJoinSpecies> tableView3;
-    public TableView<RevenueJoin> tableView4;
-    public TableView<RevenueEvents> tableView5;
-    public TableView<RevenueEvents> tableView6;
-    private RevenueEvents selectedRevenueEvents;
-    private Animal selectedAnimal;
-    private RevenueJoin selectedRevenueJoin;
-    private AnimalJoinSpecies selectedAnimalJoinSpecies;
+    public TableView<Query1Model> tableView1;
+    public TableView<Query2Model> tableView2;
+    public TableView<Query3Model> tableView3;
+    public TableView<Query4Model> tableView4;
+    public TableView<Query5Model> tableView5;
+    public TableView<Query6Model> tableView6;
+
+    private Query1Model selectedQuery1Event;
+    private Query2Model selectedQuery2Event;
+    private Query3Model selectedQuery3Event;
+    private Query4Model selectedQuery4Event;
+    private Query5Model selectedQuery5Event;
+    private Query6Model selectedQuery6Event;
+    
     
     @FXML
     public DatePicker startDateDatePicker;
@@ -91,12 +93,12 @@ public class ReportsDialogController {
         this.stage = new Stage();
         stage.setScene(new Scene(Dialog, width, height));
 
-        tableView1 = ModelTableViewBuilder.buildUpon(RevenueEvents.class);
-        tableView2 = ModelTableViewBuilder.buildUpon(RevenueJoin.class);
-        tableView3 = ModelTableViewBuilder.buildUpon(AnimalJoinSpecies.class);
-        tableView4 = ModelTableViewBuilder.buildUpon(RevenueJoin.class);
-        tableView5 = ModelTableViewBuilder.buildUpon(RevenueEvents.class);
-        tableView6 = ModelTableViewBuilder.buildUpon(RevenueEvents.class);
+        tableView1 = ModelTableViewBuilder.buildUpon(Query1Model.class);
+        tableView2 = ModelTableViewBuilder.buildUpon(Query2Model.class);
+        tableView3 = ModelTableViewBuilder.buildUpon(Query3Model.class);
+        tableView4 = ModelTableViewBuilder.buildUpon(Query4Model.class);
+        tableView5 = ModelTableViewBuilder.buildUpon(Query5Model.class);
+        tableView6 = ModelTableViewBuilder.buildUpon(Query6Model.class);
         Dialog.getChildren().add(0, tableView1);
         Dialog.getChildren().add(1, tableView2);
         Dialog.getChildren().add(2, tableView3);
@@ -106,27 +108,28 @@ public class ReportsDialogController {
 
         
         tableView1.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            selectedRevenueEvents = newSelection;
+            selectedQuery1Event=newSelection;
 
         });
         tableView2.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            selectedRevenueJoin = newSelection;
+            selectedQuery2Event=newSelection;
 
         });
         tableView3.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            selectedAnimalJoinSpecies = newSelection;
+            selectedQuery3Event=newSelection;
+
 
         });
         tableView4.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            selectedRevenueJoin = newSelection;
+            selectedQuery4Event=newSelection;
 
         });
         tableView5.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            selectedRevenueEvents = newSelection;
+            selectedQuery5Event=newSelection;
 
         });
         tableView6.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            selectedRevenueEvents = newSelection;
+            selectedQuery6Event=newSelection;
 
         });
         resetBtn.setOnAction(
@@ -154,21 +157,19 @@ public class ReportsDialogController {
     }
     private void loadDataIntoTable() {
         
-        ObservableList<RevenueEvents> data = FXCollections.observableArrayList(reportService.findAll(startDateDatePicker.getValue(),1));
-        tableView1.setItems(data);
-        data=FXCollections.observableArrayList(reportService.findAll(startDateDatePicker.getValue(),5));
-        tableView5.setItems(data);
-        data=FXCollections.observableArrayList(reportService.findAll(startDateDatePicker.getValue(),6));
-        tableView6.setItems(data);
-
-        ObservableList<RevenueJoin> data2 = FXCollections.observableArrayList(reportService.findAll2(startDateDatePicker.getValue(),2));
+        ObservableList<Query1Model> data1 = FXCollections.observableArrayList(reportService.query1findAll(startDateDatePicker.getValue()));
+        tableView1.setItems(data1);
+        ObservableList<Query2Model> data2 = FXCollections.observableArrayList(reportService.query2findAll(startDateDatePicker.getValue()));
         tableView2.setItems(data2);
-        data2 = FXCollections.observableArrayList(reportService.findAll2(startDateDatePicker.getValue(),4));
-        tableView4.setItems(data2);
+        ObservableList<Query3Model> data3 = FXCollections.observableArrayList(reportService.query3findAll());
+        tableView3.setItems(data3);
+        ObservableList<Query4Model> data4 = FXCollections.observableArrayList(reportService.query4findAll(startDateDatePicker.getValue()));
+        tableView4.setItems(data4);
+        ObservableList<Query5Model> data5 = FXCollections.observableArrayList(reportService.query5findAll(startDateDatePicker.getValue()));
+        tableView5.setItems(data5);
+        ObservableList<Query6Model> data6 = FXCollections.observableArrayList(reportService.query6findAll(startDateDatePicker.getValue()));
+        tableView6.setItems(data6);
 
-        //Will work after species table is added
-        // ObservableList<AnimalJoinSpecies> data3 = FXCollections.observableArrayList(reportService.findAll3());
-        // tableView3.setItems(data3);
     }
     public void show() {
         stage.show();
