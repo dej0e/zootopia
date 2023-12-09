@@ -23,6 +23,9 @@ import javafx.stage.Stage;
 
 import net.rgielen.fxweaver.core.FxWeaver;
 import net.rgielen.fxweaver.core.FxmlView;
+
+import javax.swing.text.LabelView;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -88,23 +91,48 @@ public class ReportsDialogController {
     @FXML
     public void initialize() {
         
-        double width = Screen.getPrimary().getBounds().getWidth()*0.8 ;
-        double height = Screen.getPrimary().getBounds().getHeight()*0.8 ;
+        double width = Screen.getPrimary().getBounds().getWidth()*0.9 ;
+        double height = Screen.getPrimary().getBounds().getHeight()*0.9 ;
         this.stage = new Stage();
         stage.setScene(new Scene(Dialog, width, height));
-
         tableView1 = ModelTableViewBuilder.buildUpon(Query1Model.class);
         tableView2 = ModelTableViewBuilder.buildUpon(Query2Model.class);
         tableView3 = ModelTableViewBuilder.buildUpon(Query3Model.class);
         tableView4 = ModelTableViewBuilder.buildUpon(Query4Model.class);
         tableView5 = ModelTableViewBuilder.buildUpon(Query5Model.class);
         tableView6 = ModelTableViewBuilder.buildUpon(Query6Model.class);
-        Dialog.getChildren().add(0, tableView1);
-        Dialog.getChildren().add(1, tableView2);
-        Dialog.getChildren().add(2, tableView3);
-        Dialog.getChildren().add(3, tableView4);
-        Dialog.getChildren().add(4, tableView5);
-        Dialog.getChildren().add(5, tableView6);
+        Label label1=new Label();
+        label1.setText("Query1");
+        Label label2=new Label();
+        label2.setText("Query2");
+        Label label3=new Label();
+        label3.setText("Query3");
+        Label label4=new Label();
+        label4.setText("Query4");
+        Label label5=new Label();
+        label5.setText("Query5");
+        Label label6=new Label();
+        label6.setText("Query6");
+
+
+        Dialog.getChildren().add(0, label1);
+        Dialog.getChildren().add(1, tableView1);
+        Dialog.getChildren().add(2, label2);
+        Dialog.getChildren().add(3, tableView2);
+        Dialog.getChildren().add(4, label3);
+        Dialog.getChildren().add(5, tableView3);
+        Dialog.getChildren().add(6, label4);
+        Dialog.getChildren().add(7, tableView4);
+        Dialog.getChildren().add(8, label5);
+        Dialog.getChildren().add(9, tableView5);
+        Dialog.getChildren().add(10, label6);
+        Dialog.getChildren().add(11, tableView6);
+        tableView1.setMinSize(0,50);
+        tableView2.setMinSize(0,50);
+        tableView3.setMinSize(0,50);
+        tableView4.setMinSize(0,50);
+        tableView5.setMinSize(0,50);
+        tableView6.setMinSize(0,50);
 
         
         tableView1.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
