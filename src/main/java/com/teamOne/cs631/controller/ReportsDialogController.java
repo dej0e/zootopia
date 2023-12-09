@@ -3,7 +3,7 @@ package com.teamOne.cs631.controller;
 import com.teamOne.cs631.models.Reports;
 import com.teamOne.cs631.service.ReportService;
 import com.teamOne.cs631.models.Query1Model;
-import com.teamOne.cs631.models.Query2Model;
+
 import com.teamOne.cs631.models.Query3Model;
 import com.teamOne.cs631.models.Query4Model;
 import com.teamOne.cs631.models.Query5Model;
@@ -41,14 +41,14 @@ public class ReportsDialogController {
     @FXML
     public ToggleGroup group;
     public TableView<Query1Model> tableView1;
-    public TableView<Query2Model> tableView2;
+
     public TableView<Query3Model> tableView3;
     public TableView<Query4Model> tableView4;
     public TableView<Query5Model> tableView5;
     public TableView<Query6Model> tableView6;
 
     private Query1Model selectedQuery1Event;
-    private Query2Model selectedQuery2Event;
+
     private Query3Model selectedQuery3Event;
     private Query4Model selectedQuery4Event;
     private Query5Model selectedQuery5Event;
@@ -79,7 +79,7 @@ public class ReportsDialogController {
     }
      public void reset() {
             tableView1.getItems().clear();
-            tableView2.getItems().clear();
+
             tableView3.getItems().clear();
             tableView4.getItems().clear();
             tableView5.getItems().clear();
@@ -98,7 +98,7 @@ public class ReportsDialogController {
         this.stage = new Stage();
         stage.setScene(new Scene(Dialog, width, height));
         tableView1 = ModelTableViewBuilder.buildUpon(Query1Model.class);
-        tableView2 = ModelTableViewBuilder.buildUpon(Query2Model.class);
+
         tableView3 = ModelTableViewBuilder.buildUpon(Query3Model.class);
         tableView4 = ModelTableViewBuilder.buildUpon(Query4Model.class);
         tableView5 = ModelTableViewBuilder.buildUpon(Query5Model.class);
@@ -107,8 +107,6 @@ public class ReportsDialogController {
         label1.setText("Query1");
         Label label2=new Label();
         label2.setText("Query2");
-        Label label3=new Label();
-        label3.setText("Query3");
         Label label4=new Label();
         label4.setText("Query4");
         Label label5=new Label();
@@ -120,17 +118,14 @@ public class ReportsDialogController {
         Dialog.getChildren().add(0, label1);
         Dialog.getChildren().add(1, tableView1);
         Dialog.getChildren().add(2, label2);
-        Dialog.getChildren().add(3, tableView2);
-        Dialog.getChildren().add(4, label3);
-        Dialog.getChildren().add(5, tableView3);
-        Dialog.getChildren().add(6, label4);
-        Dialog.getChildren().add(7, tableView4);
-        Dialog.getChildren().add(8, label5);
-        Dialog.getChildren().add(9, tableView5);
-        Dialog.getChildren().add(10, label6);
-        Dialog.getChildren().add(11, tableView6);
+        Dialog.getChildren().add(3, tableView3);
+        Dialog.getChildren().add(4, label4);
+        Dialog.getChildren().add(5, tableView4);
+        Dialog.getChildren().add(6, label5);
+        Dialog.getChildren().add(7, tableView5);
+        Dialog.getChildren().add(8, label6);
+        Dialog.getChildren().add(9, tableView6);
         tableView1.setMinSize(0,50);
-        tableView2.setMinSize(0,50);
         tableView3.setMinSize(0,50);
         tableView4.setMinSize(0,50);
         tableView5.setMinSize(0,50);
@@ -139,10 +134,6 @@ public class ReportsDialogController {
         
         tableView1.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             selectedQuery1Event=newSelection;
-
-        });
-        tableView2.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            selectedQuery2Event=newSelection;
 
         });
         tableView3.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -166,7 +157,6 @@ public class ReportsDialogController {
                 a -> {
                     reset();
                     tableView1.getSelectionModel().clearSelection();
-                    tableView2.getSelectionModel().clearSelection();
                     tableView3.getSelectionModel().clearSelection();
                     tableView4.getSelectionModel().clearSelection();
                     tableView5.getSelectionModel().clearSelection();
@@ -189,8 +179,6 @@ public class ReportsDialogController {
         
         ObservableList<Query1Model> data1 = FXCollections.observableArrayList(reportService.query1findAll(startDateDatePicker.getValue()));
         tableView1.setItems(data1);
-        ObservableList<Query2Model> data2 = FXCollections.observableArrayList(reportService.query2findAll(startDateDatePicker.getValue()));
-        tableView2.setItems(data2);
         ObservableList<Query3Model> data3 = FXCollections.observableArrayList(reportService.query3findAll());
         tableView3.setItems(data3);
         ObservableList<Query4Model> data4 = FXCollections.observableArrayList(reportService.query4findAll(startDateDatePicker.getValue(),endDateDatePicker.getValue()));

@@ -2,7 +2,6 @@ package com.teamOne.cs631.service;
 
 
 import com.teamOne.cs631.models.Query1Model;
-import com.teamOne.cs631.models.Query2Model;
 import com.teamOne.cs631.models.Query3Model;
 import com.teamOne.cs631.models.Query4Model;
 import com.teamOne.cs631.models.Query5Model;
@@ -39,22 +38,7 @@ public class ReportService {
             return null;
         }
     }
-    public List<Query2Model> query2findAll(LocalDate date) {
-        String query;
-        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd-MMM-yy");
-        String outputDateString = date.format(outputFormatter);
-        System.out.println("WITHIN FUNC: "+outputDateString);
-        List<Query2Model> rev;
-        try {
-                query = "SELECT R.dateTime, RT.name AS RevenueSource, SUM(R.revenue) AS TotalRevenue FROM Revenue_Events R JOIN Revenue_Types RT ON R.revenueId = RT.revenueTypeId WHERE R.dateTime = '"+outputDateString+"' GROUP BY R.dateTime, RT.name";
-                rev = dbAccess.query(dbService.connect(), query, new BeanListHandler<>(Query2Model.class));
-                System.out.println(rev);
-                return rev;
-        } catch (Exception e) {
-            System.out.println(e);
-            return null;
-        }
-    }
+    
     public List<Query3Model> query3findAll() {
         String query;
         List<Query3Model> rev;
