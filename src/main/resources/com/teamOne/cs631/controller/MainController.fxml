@@ -5,13 +5,12 @@
 <VBox xmlns:fx="http://javafx.com/fxml" spacing="10" alignment="CENTER"
       fx:controller="com.teamOne.cs631.controller.MainController">
 
-    <Button fx:id="openDialogButton" text="Open Simple Dialog"/>
-    <Button fx:id="openEmployeeDialog" text="Open Employee DetailsDialog"/>
-    <Button fx:id="openAnimalDialog" text="Open Animal DetailsDialog"/>
-    <Button fx:id="openBuildingsDialog" text="Open Building DetailsDialog"/>
-    <Button fx:id="openRevenueTypesDialog" text="Open RevenueTypes DetailsDialog"/>
-    <Button fx:id="openRevenueEventsDialog" text="Open RevenueEvents DetailsDialog"/>
-    <Button fx:id="openReportsDialog" text="Open Reports Dialog"/>
+    <Button fx:id="openEmployeeDialog" text="Open Employee Details"/>
+    <Button fx:id="openAnimalDialog" text="Open Animal Details"/>
+    <Button fx:id="openBuildingsDialog" text="Open Building Details"/>
+    <Button fx:id="openRevenueTypesDialog" text="Open RevenueTypes Details"/>
+    <Button fx:id="openRevenueEventsDialog" text="Open RevenueEvents Details"/>
+    <Button fx:id="openReportsDialog" text="Open Reports"/>
 
 
 </VBox>

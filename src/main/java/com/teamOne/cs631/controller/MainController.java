@@ -17,8 +17,6 @@ import org.springframework.stereotype.Component;
 public class MainController {
     private final FxWeaver fxWeaver;
     @FXML
-    public Button openDialogButton;
-    @FXML
     public Button openEmployeeDialog;
     @FXML
     public Button openAnimalDialog;
@@ -37,11 +35,6 @@ public class MainController {
 
     @FXML
     public void initialize() {
-        openDialogButton.setOnAction(
-                actionEvent -> {
-                    fxWeaver.loadController(DialogController.class).show();
-                }
-        );
 
         openEmployeeDialog.setOnAction(
                 actionEvent -> {
