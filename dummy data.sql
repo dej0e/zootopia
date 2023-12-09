@@ -1,26 +1,26 @@
 -- Insert data into EMPLOYEE table
 INSERT INTO EMPLOYEE (id, startDate, jobType, first, minit, last, street, city, state, zip, hourlyrateID, supervisorID, concessionRevenueID, zooAdmissionRevenueID)
-VALUES(1, TO_DATE('2010-01-15', 'YYYY-MM-DD'), 'Manager', 'John', 'D', 'Doe', '123 Main St', 'Cityville', 'CA', 12345, 1, NULL, 2, 3);
+VALUES(1, TO_DATE('2010-01-15', 'YYYY-MM-DD'), 'Maintenance', 'John', 'D', 'Doe', '123 Main St', 'Cityville', 'CA', 12345, 1, NULL, 2, 3);
 INSERT INTO EMPLOYEE (id, startDate, jobType, first, minit, last, street, city, state, zip, hourlyrateID, supervisorID, concessionRevenueID, zooAdmissionRevenueID)
-VALUES(2, TO_DATE('2015-03-20', 'YYYY-MM-DD'), 'Zookeeper', 'Jane', 'M', 'Smith', '456 Oak Ave', 'Townburg', 'NY', 56789, 2, 1, 1, NULL);
+VALUES(2, TO_DATE('2015-03-20', 'YYYY-MM-DD'), 'Maintenance', 'Jane', 'M', 'Smith', '456 Oak Ave', 'Townburg', 'NY', 56789, 2, 1, 1, NULL);
 
 INSERT INTO EMPLOYEE (id, startDate, jobType, first, minit, last, street, city, state, zip, hourlyrateID, supervisorID, concessionRevenueID, zooAdmissionRevenueID)
-VALUES (3, TO_DATE('2018-07-10', 'YYYY-MM-DD'), 'Caretaker', 'Robert', 'L', 'Johnson', '789 Pine Blvd', 'Villagetown', 'TX', 98765, 3, 1, NULL, 4);
+VALUES (3, TO_DATE('2018-07-10', 'YYYY-MM-DD'), 'Maintenance', 'Robert', 'L', 'Johnson', '789 Pine Blvd', 'Villagetown', 'TX', 98765, 3, 1, NULL, 4);
 
 INSERT INTO EMPLOYEE (id, startDate, jobType, first, minit, last, street, city, state, zip, hourlyrateID, supervisorID, concessionRevenueID, zooAdmissionRevenueID)
-VALUES(4, TO_DATE('2012-05-28', 'YYYY-MM-DD'), 'Security', 'Emily', 'R', 'Williams', '101 Cedar Ln', 'Hamletville', 'FL', 54321, 4, NULL, 6, 5);
+VALUES(4, TO_DATE('2012-05-28', 'YYYY-MM-DD'), 'Maintenance', 'Emily', 'R', 'Williams', '101 Cedar Ln', 'Hamletville', 'FL', 54321, 4, NULL, 6, 5);
 INSERT INTO EMPLOYEE (id, startDate, jobType, first, minit, last, street, city, state, zip, hourlyrateID, supervisorID, concessionRevenueID, zooAdmissionRevenueID)
-VALUES(5, TO_DATE('2017-11-12', 'YYYY-MM-DD'), 'Cashier', 'Michael', 'J', 'Brown', '222 Elm St', 'Citytown', 'AZ', 67890, 5, 1, 7, 6);
+VALUES(5, TO_DATE('2017-11-12', 'YYYY-MM-DD'), 'Customer Service', 'Michael', 'J', 'Brown', '222 Elm St', 'Citytown', 'AZ', 67890, 5, 1, 7, 6);
 INSERT INTO EMPLOYEE (id, startDate, jobType, first, minit, last, street, city, state, zip, hourlyrateID, supervisorID, concessionRevenueID, zooAdmissionRevenueID)
-VALUES(6, TO_DATE('2013-08-22', 'YYYY-MM-DD'), 'Janitor', 'Sarah', 'A', 'Jones', '333 Birch Ave', 'Ruraltown', 'GA', 13579, 6, 1, 8, 7);
+VALUES(6, TO_DATE('2013-08-22', 'YYYY-MM-DD'), 'Maintenance', 'Sarah', 'A', 'Jones', '333 Birch Ave', 'Ruraltown', 'GA', 13579, 6, 1, 8, 7);
 INSERT INTO EMPLOYEE (id, startDate, jobType, first, minit, last, street, city, state, zip, hourlyrateID, supervisorID, concessionRevenueID, zooAdmissionRevenueID)
-VALUES(7, TO_DATE('2016-09-05', 'YYYY-MM-DD'), 'Educator', 'Daniel', 'P', 'Miller', '444 Maple Dr', 'Suburbville', 'WA', 24680, 7, 1, 4, NULL);
+VALUES(7, TO_DATE('2016-09-05', 'YYYY-MM-DD'), 'Customer Service', 'Daniel', 'P', 'Miller', '444 Maple Dr', 'Suburbville', 'WA', 24680, 7, 1, 4, NULL);
 INSERT INTO EMPLOYEE (id, startDate, jobType, first, minit, last, street, city, state, zip, hourlyrateID, supervisorID, concessionRevenueID, zooAdmissionRevenueID)
 VALUES(8, TO_DATE('2014-04-14', 'YYYY-MM-DD'), 'Ticket Seller', 'Olivia', 'S', 'Davis', '555 Pine Ln', 'Countryside', 'OH', 97531, 8, 1 , 4 , 8);
 INSERT INTO EMPLOYEE (id, startDate, jobType, first, minit, last, street, city, state, zip, hourlyrateID, supervisorID, concessionRevenueID, zooAdmissionRevenueID)
-VALUES(9, TO_DATE('2019-01-18', 'YYYY-MM-DD'), 'Guide', 'James', 'K', 'Taylor', '666 Oak Dr', 'Villageville', 'NC', 35791, 9, 1, 2, 9);
+VALUES(9, TO_DATE('2019-01-18', 'YYYY-MM-DD'), 'Veterinarian', 'James', 'K', 'Taylor', '666 Oak Dr', 'Villageville', 'NC', 35791, 9, 1, 2, 9);
 INSERT INTO EMPLOYEE (id, startDate, jobType, first, minit, last, street, city, state, zip, hourlyrateID, supervisorID, concessionRevenueID, zooAdmissionRevenueID)
-VALUES(10, TO_DATE('2011-12-01', 'YYYY-MM-DD'), 'Gift Shop Clerk', 'Emma', 'F', 'Wilson', '777 Cedar Blvd', 'Cityland', 'MI', 80234, 10, 1, 1, 10);
+VALUES(10, TO_DATE('2011-12-01', 'YYYY-MM-DD'), 'Animal Care Specialist', 'Emma', 'F', 'Wilson', '777 Cedar Blvd', 'Cityland', 'MI', 80234, 10, 1, 1, 10);
 
 -- Insert data into HourlyRate table
 INSERT INTO HourlyRate (id, rate) VALUES(1, 15.5);
