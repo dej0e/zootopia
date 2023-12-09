@@ -100,16 +100,16 @@ INSERT INTO ANIMAL (id, buildingId, speciesId, status, birthYear, enclosureId) V
 INSERT INTO ANIMAL (id, buildingId, speciesId, status, birthYear, enclosureId) VALUES(27, 2, 4, 'Healthy', TO_DATE('2018-02-10', 'YYYY-MM-DD'), 4);
 
 -- Insert data into Revenue_Types table
-INSERT INTO Revenue_Types (revenueTypeId, name, type, buildingId) VALUES(1, 'Ticket Sales', 'Admission', 5);
+INSERT INTO Revenue_Types (revenueTypeId, name, type, buildingId) VALUES(1, 'Ticket Sales', 'Zoo Admission', 5);
 INSERT INTO Revenue_Types (revenueTypeId, name, type, buildingId) VALUES(2, 'Concess Sales', 'Concession', 4);
-INSERT INTO Revenue_Types (revenueTypeId, name, type, buildingId) VALUES(3, 'Show sales', 'Show', 3);
-INSERT INTO Revenue_Types (revenueTypeId, name, type, buildingId) VALUES(4, 'Gift Shop', 'Retail', 6);
-INSERT INTO Revenue_Types (revenueTypeId, name, type, buildingId) VALUES(5, 'Parking Fees', 'Miscellaneous', 10);
-INSERT INTO Revenue_Types (revenueTypeId, name, type, buildingId) VALUES(6, 'Memberships', 'Membership', 5);
-INSERT INTO Revenue_Types (revenueTypeId, name, type, buildingId) VALUES(7, 'Donations', 'Miscellaneous', 9);
-INSERT INTO Revenue_Types (revenueTypeId, name, type, buildingId) VALUES(8, 'Rentals', 'Miscellaneous', 1);
-INSERT INTO Revenue_Types (revenueTypeId, name, type, buildingId) VALUES(9, 'Education show', 'Program', 3);
-INSERT INTO Revenue_Types (revenueTypeId, name, type, buildingId) VALUES(10, 'Special Events', 'Event', 2);
+INSERT INTO Revenue_Types (revenueTypeId, name, type, buildingId) VALUES(3, 'Show sales', 'Animal Show', 3);
+INSERT INTO Revenue_Types (revenueTypeId, name, type, buildingId) VALUES(4, 'Gift Shop', 'Concession', 6);
+INSERT INTO Revenue_Types (revenueTypeId, name, type, buildingId) VALUES(5, 'Parking Fees', 'Concession', 10);
+INSERT INTO Revenue_Types (revenueTypeId, name, type, buildingId) VALUES(6, 'Memberships', 'Zoo Admission', 5);
+INSERT INTO Revenue_Types (revenueTypeId, name, type, buildingId) VALUES(7, 'Donations', 'Concession', 9);
+INSERT INTO Revenue_Types (revenueTypeId, name, type, buildingId) VALUES(8, 'Rentals', 'Zoo Admission', 1);
+INSERT INTO Revenue_Types (revenueTypeId, name, type, buildingId) VALUES(9, 'Education show', 'Animal Show', 3);
+INSERT INTO Revenue_Types (revenueTypeId, name, type, buildingId) VALUES(10, 'Special Events', 'Animal Show', 2);
 
 -- Insert data into Revenue_Events table
 INSERT INTO Revenue_Events (dateTime, revenueId, ticketsSold, revenue) VALUES(TO_DATE('2023-01-15', 'YYYY-MM-DD'), 1, 200.0, 1500.0);
@@ -217,14 +217,24 @@ INSERT INTO Participates_In (speciesId, animalShowRevenueId, numberRequired) VAL
 INSERT INTO Participates_In (speciesId, animalShowRevenueId, numberRequired) VALUES(10, 6, 2);
 
 -- Insert data into Cares_For table
-INSERT INTO Cares_For (speciesId, employeeId) VALUES(1, 1);
-INSERT INTO Cares_For (speciesId, employeeId) VALUES(2, 2);
-INSERT INTO Cares_For (speciesId, employeeId) VALUES(3, 3);
-INSERT INTO Cares_For (speciesId, employeeId) VALUES(4, 4);
-INSERT INTO Cares_For (speciesId, employeeId) VALUES(5, 5);
-INSERT INTO Cares_For (speciesId, employeeId) VALUES(6, 6);
-INSERT INTO Cares_For (speciesId, employeeId) VALUES(7, 7);
-INSERT INTO Cares_For (speciesId, employeeId) VALUES(8, 8);
+INSERT INTO Cares_For (speciesId, employeeId) VALUES(1, 9);
+INSERT INTO Cares_For (speciesId, employeeId) VALUES(2, 9);
+INSERT INTO Cares_For (speciesId, employeeId) VALUES(3, 9);
+INSERT INTO Cares_For (speciesId, employeeId) VALUES(4, 9);
+INSERT INTO Cares_For (speciesId, employeeId) VALUES(5, 9);
+INSERT INTO Cares_For (speciesId, employeeId) VALUES(6, 9);
+INSERT INTO Cares_For (speciesId, employeeId) VALUES(7, 9);
+INSERT INTO Cares_For (speciesId, employeeId) VALUES(8, 9);
 INSERT INTO Cares_For (speciesId, employeeId) VALUES(9, 9);
-INSERT INTO Cares_For (speciesId, employeeId) VALUES(10, 10);
+INSERT INTO Cares_For (speciesId, employeeId) VALUES(10,9);
+INSERT INTO Cares_For (speciesId, employeeId) VALUES(1, 10);
+INSERT INTO Cares_For (speciesId, employeeId) VALUES(2, 10);
+INSERT INTO Cares_For (speciesId, employeeId) VALUES(3, 10);
+INSERT INTO Cares_For (speciesId, employeeId) VALUES(4, 10);
+INSERT INTO Cares_For (speciesId, employeeId) VALUES(5, 10);
+INSERT INTO Cares_For (speciesId, employeeId) VALUES(6, 10);
+INSERT INTO Cares_For (speciesId, employeeId) VALUES(7, 10);
+INSERT INTO Cares_For (speciesId, employeeId) VALUES(8, 10);
+INSERT INTO Cares_For (speciesId, employeeId) VALUES(9, 10);
+INSERT INTO Cares_For (speciesId, employeeId) VALUES(10,10);
 
