@@ -8,3 +8,4 @@ public class Query4Model {
     public String attraction;
     public Integer totalRevenue;
 }
+
