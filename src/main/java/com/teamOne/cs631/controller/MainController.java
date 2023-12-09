@@ -37,11 +37,6 @@ public class MainController {
 
     @FXML
     public void initialize() {
-        openDialogButton.setOnAction(
-                actionEvent -> {
-                    fxWeaver.loadController(DialogController.class).show();
-                }
-        );
 
         openEmployeeDialog.setOnAction(
                 actionEvent -> {
@@ -97,6 +92,21 @@ public class MainController {
                         FxControllerAndView<AnimalDialogController, VBox> tiledDialog =
                                 fxWeaver.load(AnimalDialogController.class);
                         tiledDialog.getController().show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        showAlert(e.getLocalizedMessage());
+                    }
+                }
+        );
+
+        openReportsDialog.setOnAction(
+                actionEvent -> {
+                    try {
+                        FxControllerAndView<ReportsController, VBox> tiledDialog =
+                                fxWeaver.load(ReportsController.class);
+                        Stage stage = (Stage) openReportsDialog.getScene().getWindow();
+                        stage.setScene(tiledDialog.getView().get().getScene());
+
                     } catch (Exception e) {
                         e.printStackTrace();
                         showAlert(e.getLocalizedMessage());
