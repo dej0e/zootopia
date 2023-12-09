@@ -13,6 +13,7 @@ import com.teamOne.cs631.util.ModelTableViewBuilder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -32,7 +33,7 @@ import org.springframework.stereotype.Component;
 @Component
 @FxmlView("ReportsDialog.fxml")
 public class ReportsDialogController {
-    
+
     private Stage stage;
     @FXML
     private VBox Dialog;
@@ -53,8 +54,8 @@ public class ReportsDialogController {
     private Query4Model selectedQuery4Event;
     private Query5Model selectedQuery5Event;
     private Query6Model selectedQuery6Event;
-    
-    
+
+
     @FXML
     public DatePicker startDateDatePicker;
     @FXML
@@ -65,36 +66,38 @@ public class ReportsDialogController {
     public Button submitBtn;
     @FXML
     public Button closeBtn;
-  
+
     ReportService reportService;
     private Reports selectedReport;
-    
+
 
     private final FxWeaver fxWeaver;
 
     @Autowired
     public ReportsDialogController(FxWeaver fxWeaver, ReportService reportService) {
         this.fxWeaver = fxWeaver;
-        this.reportService=reportService;
+        this.reportService = reportService;
     }
-     public void reset() {
-            tableView1.getItems().clear();
 
-            tableView3.getItems().clear();
-            tableView4.getItems().clear();
-            tableView5.getItems().clear();
-            tableView6.getItems().clear();
-            for (Node node : anchorPane.getChildren()) { 
-                if (node instanceof DatePicker) {
-                    ((DatePicker) node).setValue(null);
-                }
+    public void reset() {
+        tableView1.getItems().clear();
+
+        tableView3.getItems().clear();
+        tableView4.getItems().clear();
+        tableView5.getItems().clear();
+        tableView6.getItems().clear();
+        for (Node node : anchorPane.getChildren()) {
+            if (node instanceof DatePicker) {
+                ((DatePicker) node).setValue(null);
             }
         }
+    }
+
     @FXML
     public void initialize() {
-        
-        double width = Screen.getPrimary().getBounds().getWidth()*0.9 ;
-        double height = Screen.getPrimary().getBounds().getHeight()*0.9 ;
+
+        double width = Screen.getPrimary().getBounds().getWidth() * 0.9;
+        double height = Screen.getPrimary().getBounds().getHeight() * 0.9;
         this.stage = new Stage();
         stage.setScene(new Scene(Dialog, width, height));
         tableView1 = ModelTableViewBuilder.buildUpon(Query1Model.class);
@@ -103,16 +106,25 @@ public class ReportsDialogController {
         tableView4 = ModelTableViewBuilder.buildUpon(Query4Model.class);
         tableView5 = ModelTableViewBuilder.buildUpon(Query5Model.class);
         tableView6 = ModelTableViewBuilder.buildUpon(Query6Model.class);
-        Label label1=new Label();
-        label1.setText("Query1");
-        Label label2=new Label();
-        label2.setText("Query2");
-        Label label4=new Label();
-        label4.setText("Query4");
-        Label label5=new Label();
-        label5.setText("Query5");
-        Label label6=new Label();
-        label6.setText("Query6");
+        Label label1 = new Label();
+        VBox.setMargin(label1, new Insets(10, 0, 5, 10));
+
+        label1.setText("For a given day, a report of the revenue by source, with detail lines and subtotals.");
+        Label label2 = new Label();
+        VBox.setMargin(label2, new Insets(20, 0, 5, 10));
+        label2.setText("Produce a report of the animal population by species, including totals by status, total monthly food cost and costs for assigned veterinarians and animal care specialists (assume a 40 hour work week).");
+        Label label4 = new Label();
+        VBox.setMargin(label4, new Insets(20, 0, 5, 10));
+
+        label4.setText("Top 3 Attractions");
+        Label label5 = new Label();
+        VBox.setMargin(label5, new Insets(20, 0, 5, 10));
+
+        label5.setText("5 Best Days");
+        Label label6 = new Label();
+        VBox.setMargin(label6, new Insets(20, 0, 5, 10));
+
+        label6.setText("For a given time period (begin date and end date) compute the average revenue for each attraction, concession, and total attendance.");
 
 
         Dialog.getChildren().add(0, label1);
@@ -125,32 +137,32 @@ public class ReportsDialogController {
         Dialog.getChildren().add(7, tableView5);
         Dialog.getChildren().add(8, label6);
         Dialog.getChildren().add(9, tableView6);
-        tableView1.setMinSize(0,50);
-        tableView3.setMinSize(0,50);
-        tableView4.setMinSize(0,50);
-        tableView5.setMinSize(0,50);
-        tableView6.setMinSize(0,50);
+        tableView1.setMinSize(0, 50);
+        tableView3.setMinSize(0, 50);
+        tableView4.setMinSize(0, 50);
+        tableView5.setMinSize(0, 50);
+        tableView6.setMinSize(0, 50);
 
-        
+
         tableView1.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            selectedQuery1Event=newSelection;
+            selectedQuery1Event = newSelection;
 
         });
         tableView3.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            selectedQuery3Event=newSelection;
+            selectedQuery3Event = newSelection;
 
 
         });
         tableView4.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            selectedQuery4Event=newSelection;
+            selectedQuery4Event = newSelection;
 
         });
         tableView5.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            selectedQuery5Event=newSelection;
+            selectedQuery5Event = newSelection;
 
         });
         tableView6.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            selectedQuery6Event=newSelection;
+            selectedQuery6Event = newSelection;
 
         });
         resetBtn.setOnAction(
@@ -162,33 +174,35 @@ public class ReportsDialogController {
                     tableView5.getSelectionModel().clearSelection();
                     tableView6.getSelectionModel().clearSelection();
                     submitBtn.setDisable(true);
-                    
+
                 }
         );
-        
+
         startDateDatePicker.setOnAction(
-                a->submitBtn.setDisable(false)
+                a -> submitBtn.setDisable(false)
         );
         submitBtn.setDisable(true);
         submitBtn.setOnAction(a -> {
             loadDataIntoTable();
         });
-        
+
     }
+
     private void loadDataIntoTable() {
-        
+
         ObservableList<Query1Model> data1 = FXCollections.observableArrayList(reportService.query1findAll(startDateDatePicker.getValue()));
         tableView1.setItems(data1);
         ObservableList<Query3Model> data3 = FXCollections.observableArrayList(reportService.query3findAll());
         tableView3.setItems(data3);
-        ObservableList<Query4Model> data4 = FXCollections.observableArrayList(reportService.query4findAll(startDateDatePicker.getValue(),endDateDatePicker.getValue()));
+        ObservableList<Query4Model> data4 = FXCollections.observableArrayList(reportService.query4findAll(startDateDatePicker.getValue(), endDateDatePicker.getValue()));
         tableView4.setItems(data4);
-        ObservableList<Query5Model> data5 = FXCollections.observableArrayList(reportService.query5findAll(startDateDatePicker.getValue(),endDateDatePicker.getValue()));
+        ObservableList<Query5Model> data5 = FXCollections.observableArrayList(reportService.query5findAll(startDateDatePicker.getValue(), endDateDatePicker.getValue()));
         tableView5.setItems(data5);
-        ObservableList<Query6Model> data6 = FXCollections.observableArrayList(reportService.query6findAll(startDateDatePicker.getValue(),endDateDatePicker.getValue()));
+        ObservableList<Query6Model> data6 = FXCollections.observableArrayList(reportService.query6findAll(startDateDatePicker.getValue(), endDateDatePicker.getValue()));
         tableView6.setItems(data6);
 
     }
+
     public void show() {
         stage.show();
         closeBtn.setOnAction(
@@ -196,5 +210,5 @@ public class ReportsDialogController {
         );
 
     }
-   
+
 }
