@@ -24,7 +24,7 @@ GROUP BY s.name;
 SELECT r.name AS attraction, SUM(revenue) AS totalRevenue
 FROM Revenue_Events re
 JOIN Revenue_Types r ON re.revenueId = r.revenueTypeId
-WHERE re.datetime = '05-DEC-23'
+WHERE re.datetime  BETWEEN '2-JAN-23' AND '05-DEC-23'
 GROUP BY r.name
 ORDER BY totalRevenue DESC
 FETCH FIRST 3 ROWS ONLY;
@@ -33,10 +33,11 @@ FETCH FIRST 3 ROWS ONLY;
 --5 Best Days
 SELECT dateTime , SUM(revenue) AS totalRevenue
 FROM Revenue_Events
-WHERE TRUNC(dateTime)= '05-DEC-23'
+WHERE TRUNC(dateTime) BETWEEN '2-JAN-23' AND '05-DEC-23'
 GROUP BY dateTime
 ORDER BY totalRevenue DESC
 FETCH FIRST 5 ROWS ONLY;
+
 
 --avg revenue
 SELECT AVG(revenue) AS averageRevenue
