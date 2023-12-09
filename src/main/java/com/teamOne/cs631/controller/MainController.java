@@ -38,6 +38,7 @@ public class MainController {
     @FXML
     public void initialize() {
 
+
         openEmployeeDialog.setOnAction(
                 actionEvent -> {
                     FxControllerAndView<EmployeeDialogController, VBox> tiledDialog =
