@@ -8,6 +8,9 @@ import lombok.Data;
 @Data
 public class Query1Model {
     @PKey
-    public Date dateTime;
-    public Integer ActivityCount;
+    public Date eventDate;
+    public String event;
+    public Integer ticketsSold;
+    public Integer totalRevenue;
 }
+

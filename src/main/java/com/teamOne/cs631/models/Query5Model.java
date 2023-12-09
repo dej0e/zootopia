@@ -10,3 +10,4 @@ public class Query5Model {
     public Date dateTime;
     public Integer totalRevenue;
 }
+

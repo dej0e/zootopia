@@ -5,5 +5,8 @@ import lombok.Data;
 @Data 
 public class Query6Model {
     @PKey
+    public String revenueSource;
     public Integer averageRevenue;
+    public Integer totalAttendance;
 }
+
