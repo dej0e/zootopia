@@ -1,9 +1,9 @@
 --  For a given day, a report of the revenue by source, with detail lines and subtotals.
 SELECT
-    re.dateTime AS EventDate,
-    rt.name AS Event,
-    re.ticketsSold AS TicketsSold,
-    re.revenue AS TotalRevenue
+    re.dateTime AS eventDate,
+    rt.name AS event,
+    re.ticketsSold AS ticketsSold,
+    re.revenue AS totalRevenue
 FROM
     Revenue_Events re
         JOIN
@@ -15,10 +15,10 @@ WHERE
 
 --- Produce a report of the animal population by species, including totals by status, total monthly food cost and costs for assigned veterinarians and animal care specialists (assume a 40 hour work week).
 SELECT
-    s.name AS Species,
+    s.name AS species,
     a.status,
-    COUNT(a.id) AS AnimalCount,
-    SUM(s.foodCost) AS TotalFoodCost,
+    COUNT(a.id) AS animalCount,
+    SUM(s.foodCost) AS totalFoodCost,
     SUM(CASE WHEN e.jobType = 'Veterinarian' THEN hr.RATE * 40 * 4 ELSE 0 END) AS VetCost,
     SUM(CASE WHEN e.jobType = 'Animal Care Specialist' THEN hr.RATE * 40 * 4 ELSE 0 END) AS ACSpecialistCost
 FROM
@@ -55,9 +55,9 @@ ORDER BY totalRevenue DESC
 
 --For a given time period (begin date and end date) compute the average revenue for each attraction, concession, and total attendance.
 SELECT
-    rt.name AS RevenueSource,
-    ROUND(AVG(re.revenue), 2) AS AverageRevenue,
-    SUM(re.ticketsSold) AS TotalAttendance
+    rt.name AS revenueSource,
+    ROUND(AVG(re.revenue), 2) AS averageRevenue,
+    SUM(re.ticketsSold) AS totalAttendance
 FROM
     Revenue_Types rt
         JOIN
