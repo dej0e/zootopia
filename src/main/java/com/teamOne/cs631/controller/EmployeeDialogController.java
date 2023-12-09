@@ -213,9 +213,7 @@ public class EmployeeDialogController {
         employee.hourlyRateId = Integer.valueOf(hourlyRateIdTextField.getText());
         employee.supervisorId = Integer.valueOf(supervisorIdTextField.getText());
         return employee;
-//        employee.startDate = startDateTextField.getText();
-//        employee.startDate = startDateTextField.getText();
-//        employee.startDate = startDateTextField.getText();
+
 
 
     }

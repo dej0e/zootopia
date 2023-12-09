@@ -17,9 +17,9 @@ SELECT s.name AS Species, COUNT(*) AS Population
 FROM ANIMAL a
 JOIN SPECIES s ON a.speciesId = s.id
 WHERE a.birthYear <= '01-DEC-23'
-GROUP BY s.name
+GROUP BY s.name;
 
-  
+
 --Top 3 Attractions
 SELECT r.name AS attraction, SUM(revenue) AS totalRevenue
 FROM Revenue_Events re

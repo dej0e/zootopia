@@ -17,6 +17,8 @@ import org.springframework.stereotype.Component;
 public class MainController {
     private final FxWeaver fxWeaver;
     @FXML
+    public Button openDialogButton;
+    @FXML
     public Button openEmployeeDialog;
     @FXML
     public Button openAnimalDialog;
@@ -105,6 +107,19 @@ public class MainController {
                         Stage stage = (Stage) openReportsDialog.getScene().getWindow();
                         stage.setScene(tiledDialog.getView().get().getScene());
 
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        showAlert(e.getLocalizedMessage());
+                    }
+                }
+        );
+
+        openReportsDialog.setOnAction(
+                actionEvent -> {
+                    try {
+                        FxControllerAndView<ReportsDialogController, VBox> tiledDialog =
+                                fxWeaver.load(ReportsDialogController.class);
+                                tiledDialog.getController().show();
                     } catch (Exception e) {
                         e.printStackTrace();
                         showAlert(e.getLocalizedMessage());

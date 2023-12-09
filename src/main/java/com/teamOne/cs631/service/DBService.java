@@ -10,10 +10,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
 @Component
 public class DBService implements DAO {
     private Connection connection;
-    private String connectionString = "jdbc:oracle:thin:dj324/Crunchy!Educator1!Brute@prophet.njit.edu:1521:course";
+    private String connectionString = "jdbc:oracle:thin:aa3577/Password#007@prophet.njit.edu:1521:course";
     @Value("spring.datasource.username")
     private String dbUserName;
     @Value("spring.datasource.password")
