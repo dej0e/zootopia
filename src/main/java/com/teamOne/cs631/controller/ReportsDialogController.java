@@ -58,6 +58,8 @@ public class ReportsDialogController {
     @FXML
     public DatePicker startDateDatePicker;
     @FXML
+    public DatePicker endDateDatePicker;
+    @FXML
     public Button resetBtn;
     @FXML
     public Button submitBtn;
@@ -191,11 +193,11 @@ public class ReportsDialogController {
         tableView2.setItems(data2);
         ObservableList<Query3Model> data3 = FXCollections.observableArrayList(reportService.query3findAll());
         tableView3.setItems(data3);
-        ObservableList<Query4Model> data4 = FXCollections.observableArrayList(reportService.query4findAll(startDateDatePicker.getValue()));
+        ObservableList<Query4Model> data4 = FXCollections.observableArrayList(reportService.query4findAll(startDateDatePicker.getValue(),endDateDatePicker.getValue()));
         tableView4.setItems(data4);
         ObservableList<Query5Model> data5 = FXCollections.observableArrayList(reportService.query5findAll(startDateDatePicker.getValue()));
         tableView5.setItems(data5);
-        ObservableList<Query6Model> data6 = FXCollections.observableArrayList(reportService.query6findAll(startDateDatePicker.getValue()));
+        ObservableList<Query6Model> data6 = FXCollections.observableArrayList(reportService.query6findAll(startDateDatePicker.getValue(),endDateDatePicker.getValue()));
         tableView6.setItems(data6);
 
     }

@@ -7,8 +7,10 @@
 <VBox fx:id="Dialog" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teamOne.cs631.controller.ReportsDialogController">
     <AnchorPane fx:id="anchorPane">
         <children>
-            
+            <Label layoutX="22.0" layoutY="80.0" prefHeight="18.0" prefWidth="75.0" text="StartDate" />
             <DatePicker fx:id="startDateDatePicker" layoutX="22.0" layoutY="100.0"  prefHeight="25.0" prefWidth="149.0" />
+            <Label layoutX="22.0" layoutY="130.0" prefHeight="18.0" prefWidth="75.0" text="EndDate" />
+            <DatePicker fx:id="endDateDatePicker" layoutX="22.0" layoutY="150.0"  prefHeight="25.0" prefWidth="149.0" />
             
             
             

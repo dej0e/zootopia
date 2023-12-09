@@ -7,10 +7,7 @@ import com.teamOne.cs631.models.Query3Model;
 import com.teamOne.cs631.models.Query4Model;
 import com.teamOne.cs631.models.Query5Model;
 import com.teamOne.cs631.models.Query6Model;
-// import com.teamOne.cs631.models.Animal;
-// import com.teamOne.cs631.models.AnimalJoinSpecies;
-// import com.teamOne.cs631.models.RevenueEvents;
-// import com.teamOne.cs631.models.RevenueJoin;
+
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
@@ -71,14 +68,16 @@ public class ReportService {
             return null;
         }
     }
-    public List<Query4Model> query4findAll(LocalDate date) {
+    public List<Query4Model> query4findAll(LocalDate startDate,LocalDate endDate) {
         String query;
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd-MMM-yy");
-        String outputDateString = date.format(outputFormatter);
-        System.out.println("WITHIN FUNC: "+outputDateString);
+        String outputstartDateString = startDate.format(outputFormatter);
+        String outputendDateString = endDate.format(outputFormatter);
+        System.out.println("WITHIN FUNC: StartDate"+outputstartDateString);
+        System.out.println("WITHIN FUNC: EndDate"+outputendDateString);
         List<Query4Model> rev;
         try {
-                query = "SELECT r.name AS attraction, SUM(revenue) AS totalRevenue FROM Revenue_Events re JOIN Revenue_Types r ON re.revenueId = r.revenueTypeId WHERE re.datetime = '"+outputDateString+"' GROUP BY r.name ORDER BY totalRevenue DESC FETCH FIRST 3 ROWS ONLY";
+                query = "SELECT r.name AS attraction, SUM(revenue) AS totalRevenue FROM Revenue_Events re JOIN Revenue_Types r ON re.revenueId = r.revenueTypeId WHERE re.datetime = '"+outputstartDateString+"' GROUP BY r.name ORDER BY totalRevenue DESC FETCH FIRST 3 ROWS ONLY";
                 rev = dbAccess.query(dbService.connect(), query, new BeanListHandler<>(Query4Model.class));
                 System.out.println(rev);
                 return rev;
@@ -103,14 +102,16 @@ public class ReportService {
             return null;
         }
     }
-    public List<Query6Model> query6findAll(LocalDate date) {
+    public List<Query6Model> query6findAll(LocalDate startDate,LocalDate endDate) {
         String query;
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd-MMM-yy");
-        String outputDateString = date.format(outputFormatter);
-        System.out.println("WITHIN FUNC: "+outputDateString);
+        String outputstartDateString = startDate.format(outputFormatter);
+        String outputendDateString = endDate.format(outputFormatter);
+        System.out.println("WITHIN FUNC: StartDate"+outputstartDateString);
+        System.out.println("WITHIN FUNC: EndDate"+outputendDateString);
         List<Query6Model> rev;
         try {
-                query =  "SELECT AVG(revenue) AS averageRevenue FROM Revenue_Events WHERE dateTime = '"+outputDateString+"'";
+                query =  "SELECT AVG(revenue) AS averageRevenue FROM Revenue_Events WHERE dateTime = '"+outputstartDateString+"'";
                 rev = dbAccess.query(dbService.connect(), query, new BeanListHandler<>(Query6Model.class));
                 System.out.println(rev);
                 return rev;
