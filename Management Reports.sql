@@ -16,8 +16,10 @@ GROUP BY R.dateTime, RT.name;
 SELECT s.name AS Species, COUNT(*) AS Population
 FROM ANIMAL a
 JOIN SPECIES s ON a.speciesId = s.id
-GROUP BY s.name;
+WHERE a.birthYear <= '01-DEC-23'
+GROUP BY s.name
 
+  
 --Top 3 Attractions
 SELECT r.name AS attraction, SUM(revenue) AS totalRevenue
 FROM Revenue_Events re
