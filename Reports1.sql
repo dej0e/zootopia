@@ -54,7 +54,6 @@ ORDER BY totalRevenue DESC
     FETCH FIRST 5 ROWS ONLY;
 
 --For a given time period (begin date and end date) compute the average revenue for each attraction, concession, and total attendance.
-
 SELECT
     rt.name AS RevenueSource,
     ROUND(AVG(re.revenue), 2) AS AverageRevenue,
@@ -64,7 +63,7 @@ FROM
         JOIN
     Revenue_Events re ON rt.revenueTypeId = re.revenueId
 WHERE
-    re.dateTime BETWEEN '15-JAN-23' AND '15-DEC-23' -- Replace with your desired date range
+    re.dateTime BETWEEN '15-JAN-23' AND '15-DEC-23'
 GROUP BY
     rt.name
 ORDER BY
