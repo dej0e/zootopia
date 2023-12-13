@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -32,7 +34,12 @@ public class EmployeeService implements EmployeeDAO {
             for (Field f : aClassFields) {
                 String fName = f.getName();
                 if (f.get(obj) != null) {
-                    if (Number.class.isAssignableFrom(f.getType())) {
+                    if(fName.toLowerCase().contains("date") || fName.toLowerCase().contains("year")) {
+                        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd-MMM-yy");
+                        String outputDateString = ((Date)f.get(obj)).toLocalDate().format(outputFormatter);
+                        System.out.println("WITHIN FUNC: "+outputDateString);
+                        buffer.append("'").append(outputDateString).append("'").append(", ");
+                    } else if (Number.class.isAssignableFrom(f.getType())) {
                         buffer.append(f.get(obj)).append(", ");
                     } else
                         buffer.append("'").append(f.get(obj)).append("'").append(", ");
