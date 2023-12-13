@@ -48,7 +48,7 @@ ORDER BY totalRevenue DESC
 --5 Best Days
 SELECT dateTime , SUM(revenue) AS totalRevenue
 FROM Revenue_Events
-WHERE TRUNC(dateTime) BETWEEN '2-JAN-23' AND '05-DEC-23'
+WHERE dateTime BETWEEN '2-JAN-23' AND '05-DEC-23'
 GROUP BY dateTime
 ORDER BY totalRevenue DESC
     FETCH FIRST 5 ROWS ONLY;
