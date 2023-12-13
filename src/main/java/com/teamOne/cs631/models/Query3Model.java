@@ -8,6 +8,7 @@ import lombok.Data;
 public class Query3Model {
     @PKey
     public String species;
+    public String status;
     public Integer animalCount;
     public Integer totalFoodCost;
     public Integer VetCost;
