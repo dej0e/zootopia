@@ -202,7 +202,8 @@ public class HourlyRateDialogController {
     private void populateTextFieldsWithData(HourlyRate e) {
         if (e == null) return;
         idTextField.setText(e.getId().toString());
-        rateTextField.setText(e.getRate().toString());
+        if (e.getRate() != null)
+            rateTextField.setText(e.getRate().toString());
     }
 
     public void show() {

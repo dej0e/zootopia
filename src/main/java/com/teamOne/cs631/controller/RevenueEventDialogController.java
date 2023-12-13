@@ -222,10 +222,14 @@ public class RevenueEventDialogController {
     private void populateTextFieldsWithData(RevenueEvents e) {
         if (e == null) return;
 
-        revenueTypeIdTextField.setText(e.getRevenueId().toString());
-        dateTimeTextField.setValue(DateUtils.getLocalDate(e.getDateTime()));
-        ticketsSoldTextField.setText(e.getTicketsSold().toString());
-        revenueTextField.setText(e.getRevenue().toString());
+        if (e.getRevenueId() != null)
+            revenueTypeIdTextField.setText(e.getRevenueId().toString());
+        if (e.getDateTime() != null)
+            dateTimeTextField.setValue(DateUtils.getLocalDate(e.getDateTime()));
+        if (e.getTicketsSold() != null)
+            ticketsSoldTextField.setText(e.getTicketsSold().toString());
+        if (e.getRevenue() != null)
+            revenueTextField.setText(e.getRevenue().toString());
 
     }
 

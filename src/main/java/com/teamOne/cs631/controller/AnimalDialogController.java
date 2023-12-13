@@ -214,15 +214,21 @@ public class AnimalDialogController {
 
     private void populateTextFieldsWithData(Animal e) {
         if (e == null) return;
-        idTextField.setText(e.getId().toString());
-        buildingIdTextField.setText(String.valueOf(e.getBuildingId()));
-        speciesIdTextField.setText(String.valueOf(e.getSpeciesId()));
-        statusTextField.setText(e.getStatus());
-        birthYearDatePicker.setValue(DateUtils.getLocalDate(e.getBirthYear()));
+        if (e.getId() != null)
+            idTextField.setText(e.getId().toString());
+        if (e.getBuildingId() != null)
+            buildingIdTextField.setText(String.valueOf(e.getBuildingId()));
+        if (e.getSpeciesId() != null)
+            speciesIdTextField.setText(String.valueOf(e.getSpeciesId()));
+        if (e.getStatus() != null)
+            statusTextField.setText(e.getStatus());
+        if (e.getBirthYear() != null)
+            birthYearDatePicker.setValue(DateUtils.getLocalDate(e.getBirthYear()));
 
 //        birthYearDatePicker.set
 //        birthYearTextField.setText(String.valueOf(e.getBirthYear()));
-        enclosureIdTextField.setText(String.valueOf(e.getEnclosureId()));
+        if (e.getEnclosureId() != null)
+            enclosureIdTextField.setText(String.valueOf(e.getEnclosureId()));
     }
 
     private void clearValuesFromTextFields() {

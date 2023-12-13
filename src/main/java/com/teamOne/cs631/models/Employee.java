@@ -12,8 +12,8 @@ public class Employee {
     public Date startDate; //DD-MMM-YY
     public String jobType;
     public String first;
-    public String last;
     public String minit;
+    public String last;
     public String street;
     public String city;
     public String state;

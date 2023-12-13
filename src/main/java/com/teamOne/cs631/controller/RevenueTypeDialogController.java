@@ -214,11 +214,14 @@ public class RevenueTypeDialogController {
 
     private void populateTextFieldsWithData(RevenueTypes e) {
         if (e == null) return;
-
-        revenueTypeIdTextField.setText(e.getRevenueTypeId().toString());
-        nameTextField.setText(e.getName());
-        eventTypeTextField.setText(e.getType());
-        buildingIdTextField.setText(e.getBuildingId().toString());
+        if (e.getRevenueTypeId() != null)
+            revenueTypeIdTextField.setText(e.getRevenueTypeId().toString());
+        if (e.getName() != null)
+            nameTextField.setText(e.getName());
+        if (e.getType() != null)
+            eventTypeTextField.setText(e.getType());
+        if (e.getBuildingId() != null)
+            buildingIdTextField.setText(e.getBuildingId().toString());
 
     }
 

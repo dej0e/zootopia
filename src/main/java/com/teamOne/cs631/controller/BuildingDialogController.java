@@ -165,7 +165,7 @@ public class BuildingDialogController {
         a.id = Integer.valueOf(idTextField.getText());
         a.name = nameTextField.getText();
         a.type = typeTextField.getText();
-    
+
         return a;
     }
 
@@ -182,7 +182,7 @@ public class BuildingDialogController {
             if (node instanceof TextField) {
                 ((TextField) node).setText("");
             }
-            if(node instanceof DatePicker) {
+            if (node instanceof DatePicker) {
                 ((DatePicker) node).setValue(null);
             }
         }
@@ -196,7 +196,7 @@ public class BuildingDialogController {
             if (node instanceof TextField) {
                 ((TextField) node).setEditable(value);
             }
-            if(node instanceof DatePicker) {
+            if (node instanceof DatePicker) {
                 ((DatePicker) node).setEditable(value);
             }
         }
@@ -204,10 +204,12 @@ public class BuildingDialogController {
 
     private void populateTextFieldsWithData(Building e) {
         if (e == null) return;
-        idTextField.setText(e.getId().toString());
-        nameTextField.setText(String.valueOf(e.getName()));
-        typeTextField.setText(String.valueOf(e.getType()));
-    
+        if (e.getId() != null)
+            idTextField.setText(e.getId().toString());
+        if (e.getName() != null)
+            nameTextField.setText(String.valueOf(e.getName()));
+        if (e.getType() != null)
+            typeTextField.setText(String.valueOf(e.getType()));
     }
 
     private void clearValuesFromTextFields() {

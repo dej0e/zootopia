@@ -210,10 +210,9 @@ public class EmployeeDialogController {
         employee.state = stateTextField.getText();
         employee.city = cityTextField.getText();
         employee.zip = zipTextField.getText();
-        employee.hourlyRateId = Integer.valueOf(hourlyRateIdTextField.getText());
-        employee.supervisorId = Integer.valueOf(supervisorIdTextField.getText());
+        employee.hourlyRateId = hourlyRateIdTextField.getText().isEmpty() ? null : Integer.valueOf(hourlyRateIdTextField.getText());
+        employee.supervisorId = supervisorIdTextField.getText().isEmpty() ? null : Integer.valueOf(supervisorIdTextField.getText());
         return employee;
-
 
 
     }
@@ -253,20 +252,32 @@ public class EmployeeDialogController {
 
     private void populateTextFieldsWithData(Employee e) {
         if (e == null) return;
-        idTextField.setText(e.getId().toString());
+        if (e.getId() != null)
+            idTextField.setText(e.getId().toString());
 //        startDateTextField.setText(e.getStartDate());
-        startDateDatePicker.setValue(DateUtils.getLocalDate(e.getStartDate()));
+        if (e.getStartDate() != null)
+            startDateDatePicker.setValue(DateUtils.getLocalDate(e.getStartDate()));
 
-        jobTypeTextField.setText(e.getJobType());
-        firstNameTextField.setText(e.getFirst());
-        minitTextField.setText(e.getMinit());
-        lastNameTextField.setText(e.getLast());
-        streetTextField.setText(e.getStreet());
-        cityTextField.setText(e.getCity());
-        stateTextField.setText(e.getState());
-        zipTextField.setText(e.getZip());
-        hourlyRateIdTextField.setText(e.getHourlyRateId().toString());
-        supervisorIdTextField.setText(e.getSupervisorId().toString());
+        if (e.getJobType() != null)
+            jobTypeTextField.setText(e.getJobType());
+        if (e.getFirst() != null)
+            firstNameTextField.setText(e.getFirst());
+        if (e.getMinit() != null)
+            minitTextField.setText(e.getMinit());
+        if (e.getLast() != null)
+            lastNameTextField.setText(e.getLast());
+        if (e.getStreet() != null)
+            streetTextField.setText(e.getStreet());
+        if (e.getCity() != null)
+            cityTextField.setText(e.getCity());
+        if (e.getState() != null)
+            stateTextField.setText(e.getState());
+        if (e.getZip() != null)
+            zipTextField.setText(e.getZip());
+        if (e.getHourlyRateId() != null)
+            hourlyRateIdTextField.setText(e.getHourlyRateId().toString());
+        if (e.getSupervisorId() != null)
+            supervisorIdTextField.setText(e.getSupervisorId().toString());
     }
 
 
